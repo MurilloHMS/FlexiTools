@@ -11,7 +11,7 @@ namespace flexiTools.Model
     public class Cartao
     {
         private static readonly string[] CartaoIdentifiers = new[]
-        {
+       {
             "ARNALDO CESAR DA SILVA - FINAL 552640******5537",
             "FERNANDO TERUYUKI KINUKAWA - FINAL 552640******1383",
             "JACKSON ALBERTO RUIZ - FINAL 552640******1763",
@@ -127,6 +127,21 @@ namespace flexiTools.Model
                             worksheet.Cell(row, 3).Value = valor;
                             row++;
                         }
+
+                        // Limpa a proteção de células
+                        worksheet.Cells().Style.Protection.Locked = false;
+
+                        // Bloqueia apenas as células preenchidas
+                        foreach (var cell in worksheet.CellsUsed())
+                        {
+                            if (!string.IsNullOrEmpty(cell.GetValue<string>()))
+                            {
+                                cell.Style.Protection.Locked = true;
+                            }
+                        }
+
+                        // Protege a planilha
+                        worksheet.Protect("senha");
 
                         newWorkbook.SaveAs(caminhoArquivo);
                     }
