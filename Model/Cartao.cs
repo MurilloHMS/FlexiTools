@@ -4,6 +4,7 @@ using System.Windows;
 using System.Text;
 using System.Linq;
 using System.Collections.Generic;
+using System.IO;
 
 namespace flexiTools.Model
 {
@@ -33,9 +34,7 @@ namespace flexiTools.Model
         public decimal Valor { get; set; }
         public string NumCartao { get; set; }
 
-        StringBuilder result = new StringBuilder();
-
-        public string GetCartaoList()
+        public static void GerarPlanilhasPorFuncionario()
         {
             OpenFileDialog ofd = new OpenFileDialog()
             {
@@ -47,7 +46,7 @@ namespace flexiTools.Model
             if (ofd.ShowDialog() != true)
             {
                 MessageBox.Show("Nenhum arquivo selecionado.");
-                return string.Empty;
+                return;
             }
 
             string filePath = ofd.FileName;
@@ -103,27 +102,42 @@ namespace flexiTools.Model
                     }
                 }
 
-               
+                string savePath = Path.Combine(Path.GetDirectoryName(filePath), "Funcionarios");
+                Directory.CreateDirectory(savePath);
 
                 foreach (var funcionario in dadosFuncionarios)
                 {
-                    result.AppendLine($"Funcionário: {funcionario.Key}");
-                    foreach (var (data, descricao, valor) in funcionario.Value)
+                    string texto = funcionario.Key;
+                    string nomeArquivo = $"{texto.Substring(0, texto.IndexOf(' '))}.xlsx";
+                    string caminhoArquivo = Path.Combine(savePath, nomeArquivo);
+
+                    using (var newWorkbook = new XLWorkbook())
                     {
-                        result.AppendLine($"{data.ToShortDateString()}\t{descricao}\t{valor:C}");
+                        var worksheet = newWorkbook.AddWorksheet("Dados");
+
+                        worksheet.Cell(1, 1).Value = "Data";
+                        worksheet.Cell(1, 2).Value = "Descrição";
+                        worksheet.Cell(1, 3).Value = "Valor";
+
+                        int row = 2;
+                        foreach (var (data, descricao, valor) in funcionario.Value)
+                        {
+                            worksheet.Cell(row, 1).Value = data.ToShortDateString();
+                            worksheet.Cell(row, 2).Value = descricao;
+                            worksheet.Cell(row, 3).Value = valor;
+                            row++;
+                        }
+
+                        newWorkbook.SaveAs(caminhoArquivo);
                     }
-                    result.AppendLine();
                 }
 
-                Clipboard.SetText(result.ToString());
+                MessageBox.Show("Planilhas geradas com sucesso.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao ler o arquivo Excel: {ex.Message}");
-                return string.Empty;
+                MessageBox.Show($"Erro ao processar o arquivo Excel: {ex.Message}");
             }
-
-            return result.ToString();
         }
     }
 }
