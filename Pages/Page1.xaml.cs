@@ -1,4 +1,5 @@
-﻿using System;
+﻿using flexiTools.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SideBar_Nav.Pages
+namespace FlexiTools.Pages
 {
     /// <summary>
     /// Interaction logic for Page1.xaml
@@ -23,6 +24,14 @@ namespace SideBar_Nav.Pages
         public Page1()
         {
             InitializeComponent();
+        }
+
+        private void btnDados_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("O botão foi clicado!");
+
+            string cartaoList = Cartao.GetCartaoList();
+            txtConteudo.Text = cartaoList;
         }
     }
 }

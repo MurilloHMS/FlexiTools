@@ -16,7 +16,6 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
                             <Setter Property="Fill" TargetName="icon" Value="#2a84f1"/>
@@ -26,8 +25,8 @@
                             <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
                             <Setter Property="Fill" TargetName="icon" Value="#2a84f1"/>
                         </Trigger>
-
                     </ControlTemplate.Triggers>
+
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

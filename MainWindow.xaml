@@ -23,7 +23,7 @@
 
         </ListBox>
 
-        <Frame Grid.Column="1" x:Name="navframe" NavigationUIVisibility="Hidden" Background="#e9ecef"/>
+        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#e9ecef"/>
 
     </Grid>
 </Window>

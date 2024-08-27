@@ -20,7 +20,7 @@ namespace FlexiTools
 
             var selected = sidebar.SelectedItem as NavButton;
 
-            navframe.Navigate(selected.Navlink);
+            MainFrame.Navigate(selected.Navlink);
 
         }
     }
