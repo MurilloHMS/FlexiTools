@@ -1,4 +1,5 @@
 ﻿using flexiTools.Model;
+using Microsoft.Extensions.FileProviders.Physical;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,27 @@ namespace FlexiTools.Pages
             InitializeComponent();
         }
 
-        private void btnDados_Click(object sender, RoutedEventArgs e)
+        private async void btnDados_Click(object sender, RoutedEventArgs e)
         {
-            Cartao.GerarPlanilhasPorFuncionario();
+            StringBuilder sb = new StringBuilder();
+            
+            var progress = new Progress<string>(message =>
+            {
+                sb.AppendLine(message);
+                txtConteudo.Text = sb.ToString();
+            });
+
+            try
+            {
+                await Cartao.GerarPlanilhasPorFuncionarioAsync(progress);
+            }
+            catch (Exception ex)
+            {
+                sb.AppendLine($"Erro: {ex.Message}");
+                txtConteudo.Text = sb.ToString();
+            }
         }
+
+
     }
 }
