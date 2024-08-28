@@ -15,7 +15,7 @@
             <Setter Property="Background" Value="White"/>
             <Setter Property="GridLinesVisibility" Value="None"/>
             <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
-            <Setter Property="RowHeight" Value="30"/>
+            <Setter Property="RowHeight" Value="20"/>
             <Setter Property="ColumnHeaderStyle">
                 <Setter.Value>
                     <Style TargetType="DataGridColumnHeader">
@@ -32,8 +32,10 @@
                 <Setter.Value>
                     <Style TargetType="DataGridCell">
                         <Setter Property="Padding" Value="10,5"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="BorderBrush" Value="#E0E0E0"/>
                         <Setter Property="BorderThickness" Value="0,0,0,1"/>
@@ -45,8 +47,6 @@
                     <Style TargetType="DataGridRow">
                         <Setter Property="Background" Value="White"/>
                         <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="Margin" Value="0,0,0,1"/>
                         <Setter Property="BorderBrush" Value="#E0E0E0"/>
@@ -64,7 +64,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style TargetType="TextBox" x:Key="DataGridTextBoxStyle">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
     </Page.Resources>
+
     <Grid Background="#f1f3f5">
         <Button Content="Importar Dados Funcionários" 
                 FontFamily="ubuntu"
@@ -83,11 +89,13 @@
                   CanUserDeleteRows="False"
                   CanUserReorderColumns="True"
                   CanUserResizeColumns="True"
-                  CanUserSortColumns="True" Cursor="Hand">
+                  CanUserSortColumns="True" 
+                  Cursor="Hand" FontFamily="ubuntu"
+                  GridLinesVisibility="None">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Data" Binding="{Binding Data, StringFormat=d}" Width="*"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data, StringFormat=dd/MM/yyyy}" Width="*"/>
                 <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" Width="*"/>
-                <DataGridTextColumn Header="Valor" Binding="{Binding Valor, StringFormat=C}" Width="*"/>
+                <DataGridTextColumn Header="Valor" Binding="{Binding Valor, StringFormat={}{0:C}, ConverterCulture=pt-BR}" Width="*"/>
                 <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria}" Width="*"/>
                 <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="*"/>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"/>
