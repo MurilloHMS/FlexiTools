@@ -32,7 +32,8 @@ namespace flexiTools.Model
         public DateTime Data { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
-        public string NumCartao { get; set; }
+        public string Categoria { get; set; }
+        public string Cliente { get; set; }
 
         public static async Task GerarPlanilhasPorFuncionarioAsync(IProgress<string> progress)
         {
