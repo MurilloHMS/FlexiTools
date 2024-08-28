@@ -107,7 +107,7 @@ namespace flexiTools.Model
                 foreach (var funcionario in dadosFuncionarios)
                 {
                     string texto = funcionario.Key;
-                    string nomeArquivo = $"{texto.Substring(0, texto.IndexOf(' '))}.xlsx";
+                    string nomeArquivo = $"{texto.Substring(0, texto.IndexOf('-'))}.xlsx";
                     string caminhoArquivo = Path.Combine(savePath, nomeArquivo);
 
                     using (var newWorkbook = new XLWorkbook())
@@ -131,12 +131,16 @@ namespace flexiTools.Model
                             var validCategorias = $"\"{string.Join("," , categorias)}\"";
                             var validation = worksheet.Cell(row, 4).CreateDataValidation();                            
                             validation.List(validCategorias, true);
+                            validation.ErrorTitle = "Categorias Bloqueadas";
+                            validation.ErrorStyle = XLErrorStyle.Information;
                             validation.ErrorMessage = "'Só é possível incluir as categorias pré selecionadas";
                             row++;
                         }
 
                         var validaton = worksheet.Range("A1:c10000").CreateDataValidation();
                         validaton.Custom($"\">=0\"");
+                        validaton.ErrorTitle = "Edição Bloqueada";
+                        validaton.ErrorStyle = XLErrorStyle.Information;
                         validaton.ErrorMessage = "Célula Bloqueada!";
                         newWorkbook.SaveAs(caminhoArquivo);
                     }
