@@ -9,7 +9,7 @@
       Title="Page1">
 
     <Grid Background="#f1f3f5">
-        <Button x:Name="BtnConteudo" Content="Importar dados" VerticalAlignment="top" Cursor="Hand" Click="btnDados_Click" IsEnabled="True"/>
+        <Button x:Name="BtnConteudo" Content="Importar dados" FontFamily="ubuntu" VerticalAlignment="top" Cursor="Hand" Click="btnDados_Click" BorderBrush="Transparent"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="auto" Margin="20">
             <TextBlock x:Name="txtConteudo" VerticalAlignment="Top" Margin="0,30,0,0" TextWrapping="Wrap"/>
         </ScrollViewer>

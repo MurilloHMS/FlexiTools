@@ -9,8 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="assets\Car.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.102.3" />
     <PackageReference Include="EPPlus" Version="7.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="assets\Car.ico" />
   </ItemGroup>
 
 </Project>

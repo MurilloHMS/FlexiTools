@@ -54,7 +54,6 @@ namespace flexiTools.Model
 
             try
             {
-                // Atualiza a UI com a mensagem de coleta
                 progress?.Report("Lendo dados do arquivo...");
 
                 await Task.Run(() =>
@@ -111,7 +110,6 @@ namespace flexiTools.Model
                 string savePath = Path.Combine(Path.GetDirectoryName(filePath), "Funcionarios");
                 Directory.CreateDirectory(savePath);
 
-                // Atualiza a UI com a mensagem de progresso
                 progress?.Report("Gerando planilhas...");
 
                 await Task.Run(() =>
@@ -147,21 +145,20 @@ namespace flexiTools.Model
                                 validation.ErrorStyle = XLErrorStyle.Information;
                                 validation.ErrorMessage = "'Só é possível incluir as categorias pré selecionadas";
                                 row++;
+                                
                             }
 
                             var validaton = worksheet.Range("A1:C10000").CreateDataValidation();
-                            validaton.Custom(">=0");
+                            validaton.Custom($"\">=0\"");
                             validaton.ErrorTitle = "Edição Bloqueada";
                             validaton.ErrorStyle = XLErrorStyle.Information;
                             validaton.ErrorMessage = "Célula Bloqueada!";
 
-                            var currentValue = worksheet.Range("C1:C10000");
-                            currentValue.Style.NumberFormat.Format = "_-[$R$-pt-BR] * #.##0,00_);[Red]_(-[$R$-pt-BR] * #.##0,00_);_(-[$R$-pt-BR] * \"-\"??_);_(@_)";
+                            
 
                             newWorkbook.SaveAs(caminhoArquivo);
                         }
 
-                        // Atualiza a UI com o progresso para cada planilha
                         progress?.Report($"Planilha gerada: {nomeArquivo}");
                     }
                 });
