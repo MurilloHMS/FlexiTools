@@ -1,4 +1,4 @@
-﻿<Page x:Class="SideBar_Nav.Pages.Page2"
+﻿<Page x:Class="SideBar_Nav.Pages.UploadDadosFuncionarios"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -74,7 +74,7 @@
                 Margin="5"
                 Cursor="Hand"
                 BorderBrush="Transparent"
-                Background="Transparent"/>
+                Background="Transparent" Click="Button_Click"/>
         <DataGrid x:Name="dgvCartoes"
                   ItemsSource="{Binding CartoesCollection}"
                   AutoGenerateColumns="False"

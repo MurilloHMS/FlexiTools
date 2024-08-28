@@ -5,6 +5,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.Extensions.FileProviders.Physical;
 
 namespace flexiTools.Model
 {
@@ -134,7 +135,7 @@ namespace flexiTools.Model
                             int row = 2;
                             foreach (var (data, descricao, valor) in funcionario.Value)
                             {
-                                worksheet.Cell(row, 1).Value = data.ToShortDateString();
+                                worksheet.Cell(row, 1).Value = data;
                                 worksheet.Cell(row, 2).Value = descricao;
                                 worksheet.Cell(row, 3).Value = valor;
 
@@ -170,6 +171,58 @@ namespace flexiTools.Model
             {
                 MessageBox.Show($"Erro ao processar o arquivo Excel: {ex.Message}");
             }
+        }
+
+        public static async Task<IEnumerable<Cartao>> ObterDadosDasPlanilhasAsync()
+        {
+            var dados = new List<Cartao>();
+
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                Multiselect = true
+            };
+
+            if (ofd.ShowDialog() != true)
+            {
+                MessageBox.Show("Nenhum arquivo selecionado.");
+                return Enumerable.Empty<Cartao>();
+            }
+
+            string[] files = ofd.FileNames;
+
+            foreach (string file in files) 
+            {
+                string nome = Path.GetFileName(file);
+                string formatedName = nome.Substring(0, nome.IndexOf("."));
+
+                await Task.Run(() =>
+                {
+                    using (XLWorkbook wb = new XLWorkbook(file))
+                    {
+                        var planilha = wb.Worksheet(1);
+                        var fileData = planilha.RowsUsed()
+                                        .Skip(1)
+                                        .Select(row => new Cartao
+                                        {
+                                            Data = row.Cell(1).TryGetValue<DateTime>(out var data) ? data : DateTime.Now,
+                                            Descricao = row.Cell(2).TryGetValue<string>(out var descricao) ? descricao : null,
+                                            Valor = row.Cell(3).TryGetValue<decimal>(out var valor) ? valor : 0m,
+                                            Categoria = row.Cell(4).TryGetValue<string>(out var categoria) ? categoria : null,
+                                            Cliente = row.Cell(5).TryGetValue<string>(out var cliente) ? cliente : null,
+                                            Nome = formatedName
+
+                                        }).ToList();
+
+                        lock (dados)
+                        {
+                            dados.AddRange(fileData);
+                        }
+                    }
+                });
+            }
+
+            return dados;
+
         }
     }
 }

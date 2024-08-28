@@ -1,4 +1,5 @@
-﻿using System;
+﻿using flexiTools.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,17 @@ using System.Windows.Shapes;
 
 namespace SideBar_Nav.Pages
 {
-    /// <summary>
-    /// Interaction logic for Page2.xaml
-    /// </summary>
-    public partial class Page2 : Page
+    public partial class UploadDadosFuncionarios : Page
     {
-        public Page2()
+        public UploadDadosFuncionarios()
         {
             InitializeComponent();
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var dados = await Cartao.ObterDadosDasPlanilhasAsync();
+            dgvCartoes.ItemsSource = dados;
         }
     }
 }
