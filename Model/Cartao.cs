@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Extensions.FileProviders.Physical;
 using System.Reflection.Metadata;
+using FlexiTools.Model;
 
 namespace flexiTools.Model
 {
@@ -57,6 +58,11 @@ namespace flexiTools.Model
 
             try
             {
+                progress?.Report("Obtendo dados dos Funcionários...");
+                string file = "funcionarios.json";
+                Funcionario func = new Funcionario();
+                var funcionarios = await func.GetFuncionarios(file);
+
                 progress?.Report("Lendo dados do arquivo...");
 
                 await Task.Run(() =>
@@ -74,7 +80,7 @@ namespace flexiTools.Model
 
                             if (string.IsNullOrWhiteSpace(rowData)) continue;
 
-                            if (CartaoIdentifiers.Any(identifier => rowData.Contains(identifier)))
+                            if (funcionarios.Any(identifier => rowData.Contains(identifier.Nome)))
                             {
                                 currentFuncionario = rowData;
                                 if (!dadosFuncionarios.ContainsKey(currentFuncionario))
