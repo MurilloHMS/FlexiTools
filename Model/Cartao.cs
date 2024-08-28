@@ -1,10 +1,8 @@
 ﻿using Microsoft.Win32;
-using ClosedXML.Excel;
+using ClosedXML;
 using System.Windows;
-using System.Text;
-using System.Linq;
-using System.Collections.Generic;
 using System.IO;
+using ClosedXML.Excel;
 
 namespace flexiTools.Model
 {
@@ -118,6 +116,8 @@ namespace flexiTools.Model
                         worksheet.Cell(1, 1).Value = "Data";
                         worksheet.Cell(1, 2).Value = "Descrição";
                         worksheet.Cell(1, 3).Value = "Valor";
+                        worksheet.Cell(1, 4).Value = "Categoria Gasto";
+                        worksheet.Cell(1, 5).Value = "Cliente";
 
                         int row = 2;
                         foreach (var (data, descricao, valor) in funcionario.Value)
@@ -125,24 +125,14 @@ namespace flexiTools.Model
                             worksheet.Cell(row, 1).Value = data.ToShortDateString();
                             worksheet.Cell(row, 2).Value = descricao;
                             worksheet.Cell(row, 3).Value = valor;
+                            
+                            var categorias = new List<string> {"ALIMENTAÇÃO", "COMBUSTIVEL", "HOTEL", "PASSAGENS","PEÇAS E EQUIPAMENTOS"};
+                            var validCategorias = $"\"{string.Join("," , categorias)}\"";
+                            var validation = worksheet.Cell(row, 4).CreateDataValidation();                            
+                            validation.List(validCategorias, true);
                             row++;
                         }
-
-                        // Limpa a proteção de células
-                        worksheet.Cells().Style.Protection.Locked = false;
-
-                        // Bloqueia apenas as células preenchidas
-                        foreach (var cell in worksheet.CellsUsed())
-                        {
-                            if (!string.IsNullOrEmpty(cell.GetValue<string>()))
-                            {
-                                cell.Style.Protection.Locked = true;
-                            }
-                        }
-
-                        // Protege a planilha
-                        worksheet.Protect("senha");
-
+                       
                         newWorkbook.SaveAs(caminhoArquivo);
                     }
                 }
