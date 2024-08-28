@@ -1,18 +1,8 @@
 ﻿using flexiTools.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace SideBar_Nav.Pages
 {
@@ -23,10 +13,42 @@ namespace SideBar_Nav.Pages
             InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private async void btnExcel_Click(object sender, RoutedEventArgs e)
         {
             var dados = await Cartao.ObterDadosDasPlanilhasAsync();
             dgvCartoes.ItemsSource = dados;
+        }
+
+        private async void btnSalvar(object sender, RoutedEventArgs e)
+        {
+            var dados = dgvCartoes.ItemsSource as IEnumerable<Cartao>;
+
+            if (dados == null || !dados.Any())
+            {
+                MessageBox.Show("Não há dados para salvar.");
+                return;
+            }
+
+            var dialog = new SaveFileDialog
+            {
+                Filter = "Arquivos Excel (*.xlsx)|*.xlsx",
+                Title = "Escolha onde salvar o arquivo"
+            };
+
+            if (dialog.ShowDialog() == true)
+            {
+                string caminhoArquivo = dialog.FileName;
+
+                try
+                {
+                    await Cartao.SalvarDados(caminhoArquivo, dados);
+                    MessageBox.Show("Dados salvos com sucesso.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erro ao salvar dados: {ex.Message}");
+                }
+            }
         }
     }
 }

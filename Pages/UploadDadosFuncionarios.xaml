@@ -6,9 +6,8 @@
       xmlns:local="clr-namespace:SideBar_Nav.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Page2">
+      Title="CalculoDadosFuncionarios">
     <Page.Resources>
-        <!-- Style for DataGrid -->
         <Style TargetType="DataGrid">
             <Setter Property="BorderBrush" Value="#D3D3D3"/>
             <Setter Property="BorderThickness" Value="1"/>
@@ -34,11 +33,11 @@
                         <Setter Property="Padding" Value="10,5"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        <Setter Property="TextBlock.VerticalAlignment" Value="Center"/>
                         <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="BorderBrush" Value="#E0E0E0"/>
-                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>                        
                     </Style>
                 </Setter.Value>
             </Setter>
@@ -64,37 +63,46 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <Style TargetType="TextBox" x:Key="DataGridTextBoxStyle">
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-        </Style>
     </Page.Resources>
 
     <Grid Background="#f1f3f5">
-        <Button Content="Importar Dados Funcionários" 
-                FontFamily="ubuntu"
-                VerticalAlignment="Top"
-                Foreground="black"
-                FontSize="24"
-                Margin="5"
+        <ToolBar Height="20" VerticalAlignment="Top">
+            <Button
+                Cursor="Hand"
+                BorderBrush="Transparent" 
+                Click="btnExcel_Click"
+                Height="20"
+                Width="24"
+                ToolTip="Selecionar Excel"> 
+                <Button.Background>
+                    <ImageBrush ImageSource="/Pages/Microsoft Excel.ico" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+            <Button
                 Cursor="Hand"
                 BorderBrush="Transparent"
-                Background="Transparent" Click="Button_Click"/>
+                Click="btnSalvar"
+                Height="20"
+                Width="24"
+                ToolTip="Salvar Dados">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Pages/Save.ico" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+        </ToolBar>
         <DataGrid x:Name="dgvCartoes"
                   ItemsSource="{Binding CartoesCollection}"
                   AutoGenerateColumns="False"
-                  Margin="0,40,0,10"
+                  Margin="0,25,0,10"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   CanUserReorderColumns="True"
                   CanUserResizeColumns="True"
                   CanUserSortColumns="True" 
-                  Cursor="Hand" FontFamily="ubuntu"
-                  GridLinesVisibility="None">
+                  Cursor="Hand" FontFamily="ubuntu">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Data" Binding="{Binding Data, StringFormat=dd/MM/yyyy}" Width="*"/>
-                <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" Width="*"/>
+                <DataGridTextColumn Header="Descrição" Binding="{Binding Descricao}" Width="Auto"/>
                 <DataGridTextColumn Header="Valor" Binding="{Binding Valor, StringFormat={}{0:C}, ConverterCulture=pt-BR}" Width="*"/>
                 <DataGridTextColumn Header="Categoria" Binding="{Binding Categoria}" Width="*"/>
                 <DataGridTextColumn Header="Cliente" Binding="{Binding Cliente}" Width="*"/>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.Extensions.FileProviders.Physical;
+using System.Reflection.Metadata;
 
 namespace flexiTools.Model
 {
@@ -224,5 +225,35 @@ namespace flexiTools.Model
             return dados;
 
         }
+
+        public static async Task SalvarDados(string caminhoArquivo, IEnumerable<Cartao> dados)
+        {
+            await Task.Run(() =>
+            {
+                using (var workbook = File.Exists(caminhoArquivo) ? new XLWorkbook(caminhoArquivo) : new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Count > 0 ? workbook.Worksheet(1) : workbook.Worksheets.Add("Dados");
+
+                    var ultimaLinha = worksheet.CellsUsed().Any() ? worksheet.CellsUsed().Last().Address.RowNumber : 0;
+
+                    int novaLinha = ultimaLinha + 1;
+
+                    foreach (var row in dados)
+                    {
+                        worksheet.Cell(novaLinha, 1).Value = row.Data;
+                        worksheet.Cell(novaLinha, 2).Value = row.Descricao;
+                        worksheet.Cell(novaLinha, 3).Value = row.Valor;
+                        worksheet.Cell(novaLinha, 4).Value = row.Categoria;
+                        worksheet.Cell(novaLinha, 5).Value = row.Cliente;
+                        worksheet.Cell(novaLinha, 6).Value = row.Nome;
+                        novaLinha++;
+                    }
+
+                    workbook.SaveAs(caminhoArquivo);
+                }
+            });
+        }
+
+
     }
 }

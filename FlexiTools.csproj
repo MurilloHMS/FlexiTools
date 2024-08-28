@@ -9,8 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="assets\Car.ico" />
+    <None Remove="Pages\assets\Microsoft Excel.ico" />
+    <None Remove="Pages\assets\Save.ico" />
     <None Remove="icone-proauto.ico" />
+    <None Remove="Pages\Car.ico" />
+    <None Remove="Pages\Microsoft Excel.ico" />
+    <None Remove="Pages\Save.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,8 +23,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="assets\Car.ico" />
+    <Resource Include="Pages\assets\Microsoft Excel.ico" />
+    <Resource Include="Pages\assets\Save.ico" />
     <Resource Include="icone-proauto.ico" />
+    <Resource Include="Pages\Microsoft Excel.ico" />
+    <Resource Include="Pages\Save.ico" />
   </ItemGroup>
 
 </Project>
