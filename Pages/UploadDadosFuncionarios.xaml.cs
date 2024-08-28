@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 
-namespace SideBar_Nav.Pages
+namespace FlexiTools.Pages
 {
     public partial class UploadDadosFuncionarios : Page
     {

@@ -1,0 +1,44 @@
+﻿<Page x:Class="FlexiTools.Pages.CalculosAlfaTransportes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FlexiTools.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page3">
+
+    <Grid Background="#f1f3f5">
+        <ToolBar Height="25" VerticalAlignment="Top">
+            <Button
+                x:Name="btnAbrir"
+                 Cursor="Hand"
+                 BorderBrush="Transparent" 
+                 Height="20"
+                 Width="24"
+                 ToolTip="Abrir Arquivos" Click="btnAbrir_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Pages/Folder.ico" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+            <Button
+                x:Name="btnImprimir"
+                 Cursor="Hand"
+                 BorderBrush="Transparent"
+                 Height="20"
+                 Width="24"
+                 ToolTip="Imprimir" Click="btnImprimir_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Pages/Print.ico" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
+        </ToolBar>
+        <TextBox Name="txtResultadoDosCalculos" 
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Margin="0,25,0,10"
+                    AcceptsReturn ="True"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Page>
