@@ -4,6 +4,7 @@ using System.Windows;
 using System.IO;
 using ClosedXML.Excel;
 using System.Windows.Controls;
+using DocumentFormat.OpenXml.Office2010.Word;
 
 namespace flexiTools.Model
 {
@@ -142,6 +143,10 @@ namespace flexiTools.Model
                         validaton.ErrorTitle = "Edição Bloqueada";
                         validaton.ErrorStyle = XLErrorStyle.Information;
                         validaton.ErrorMessage = "Célula Bloqueada!";
+
+                        var currentValue = worksheet.Range("C1:c10000");
+                        currentValue.Style.NumberFormat.NumberFormatId = 2;
+
                         newWorkbook.SaveAs(caminhoArquivo);
                     }
                 }
