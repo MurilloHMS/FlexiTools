@@ -3,6 +3,7 @@ using ClosedXML;
 using System.Windows;
 using System.IO;
 using ClosedXML.Excel;
+using System.Windows.Controls;
 
 namespace flexiTools.Model
 {
@@ -130,9 +131,13 @@ namespace flexiTools.Model
                             var validCategorias = $"\"{string.Join("," , categorias)}\"";
                             var validation = worksheet.Cell(row, 4).CreateDataValidation();                            
                             validation.List(validCategorias, true);
+                            validation.ErrorMessage = "'Só é possível incluir as categorias pré selecionadas";
                             row++;
                         }
-                       
+
+                        var validaton = worksheet.Range("A1:c10000").CreateDataValidation();
+                        validaton.Custom($"\">=0\"");
+                        validaton.ErrorMessage = "Célula Bloqueada!";
                         newWorkbook.SaveAs(caminhoArquivo);
                     }
                 }
