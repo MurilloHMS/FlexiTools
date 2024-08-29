@@ -95,7 +95,7 @@
         </ToolBar>
         <DataGrid ItemsSource="{Binding Cartoes}"
                   AutoGenerateColumns="False"
-                  Margin="0,25,0,10"
+                  Margin="0,25,300,10"
                   CanUserAddRows="False"
                   CanUserDeleteRows="False"
                   CanUserReorderColumns="True"
@@ -111,5 +111,29 @@
                 <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <TreeView ItemsSource="{Binding CartoesGroupedView}" 
+                  HorizontalAlignment="Right" 
+                  VerticalAlignment="Stretch"
+                  Width="300"
+                  Margin="0,25, 0 ,10">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Categorias}">
+                    <TextBlock Text="{Binding Nome}"/>
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} = {1:C}">
+                                        <Binding Path="Categoria"/>
+                                        <Binding Path="ValorTotal" ConverterCulture="pt-BR"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
     </Grid>
 </Page>
