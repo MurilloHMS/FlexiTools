@@ -196,7 +196,7 @@ namespace FlexiTools.MVVM.Model
                                             Valor = row.Cell(3).TryGetValue<decimal>(out var valor) ? valor : 0m,
                                             Categoria = row.Cell(4).TryGetValue<string>(out var categoria) ? categoria : null,
                                             Cliente = row.Cell(5).TryGetValue<string>(out var cliente) ? cliente : null,
-                                            Nome = formatedName
+                                            Nome = row.Cell(6).TryGetValue<string>(out var nome) && !string.IsNullOrWhiteSpace(nome) ? nome : formatedName
 
                                         }).ToList();
 
