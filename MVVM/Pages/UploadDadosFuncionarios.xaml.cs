@@ -1,4 +1,4 @@
-﻿using flexiTools.Model;
+﻿using FlexiTools.MVVM.Model;
 using Microsoft.Win32;
 using System.Windows;
 using System.Windows.Controls;

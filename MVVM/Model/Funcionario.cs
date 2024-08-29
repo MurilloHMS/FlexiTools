@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace FlexiTools.Model
+namespace FlexiTools.MVVM.Model
 {
-    class Funcionario
+    public class Funcionario
     {
-        public string Nome {  get; set; }
+        public string Nome { get; set; }
 
         public static async Task<List<Funcionario>> GetFuncionarios(string filePath)
         {
@@ -15,7 +15,7 @@ namespace FlexiTools.Model
                 return new List<Funcionario>();
             }
 
-            using(var reader = new StreamReader(filePath))
+            using (var reader = new StreamReader(filePath))
             {
                 string json = await reader.ReadToEndAsync();
                 var funcionarios = JsonConvert.DeserializeObject<List<Funcionario>>(json);

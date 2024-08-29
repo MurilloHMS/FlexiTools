@@ -1,4 +1,4 @@
-﻿using flexiTools.Model;
+﻿using FlexiTools.MVVM.Model;
 using Microsoft.Extensions.FileProviders.Physical;
 using System;
 using System.Collections.Generic;

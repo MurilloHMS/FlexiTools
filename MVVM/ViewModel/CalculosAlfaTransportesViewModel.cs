@@ -1,51 +1,39 @@
-﻿using System.Drawing.Printing;
-using System.Drawing;
-using System.Windows.Controls;
-using System.Globalization;
-using System.Xml.Linq;
+﻿
 using Microsoft.Win32;
-using System.Windows;
+using System.Globalization;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Xml.Linq;
 
-namespace FlexiTools.Pages
+namespace FlexiTools.MVVM.ViewModel
 {
-    public partial class CalculosAlfaTransportes : Page
+    public class CalculosAlfaTransportesViewModel : ViewModelBase
     {
+        private string _resultadoDosCalculos;
+        private string _textToPrint;
 
-        private PrintDocument printDocument;
-        private string? textToprint;
-
-        public CalculosAlfaTransportes()
+        public string ResultadoDosCalculos
         {
-            InitializeComponent();
-            printDocument = new PrintDocument();
-        }
-
-        private void btnImprimir_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrEmpty(textToprint))
+            get => _resultadoDosCalculos;
+            set
             {
-                MessageBox.Show("Não há texto para imprimir.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-
-            PrintDialog printDialog = new PrintDialog();
-
-            TextBlock textBlock = new TextBlock
-            {
-                Text = textToprint,
-                TextWrapping = TextWrapping.Wrap,
-                FontSize = 10,
-                Margin = new Thickness(10)
-            };
-
-            if (printDialog.ShowDialog() == true)
-            {
-                printDialog.PrintVisual(textBlock, "Impressão de Texto");
+                _resultadoDosCalculos = value;
+                OnPropertyChanged(nameof(ResultadoDosCalculos));
             }
         }
 
-        private void btnAbrir_Click(object sender, System.Windows.RoutedEventArgs e)
+        public ICommand AbrirCommand { get; }
+        public ICommand ImprimirCommand { get; }
+
+        public CalculosAlfaTransportesViewModel()
+        {
+            AbrirCommand = new RelayCommand(ExecuteAbrirCommand);
+            ImprimirCommand = new RelayCommand(ExecuteImprimirCommand);
+        }
+
+        private void ExecuteAbrirCommand()
         {
             try
             {
@@ -56,7 +44,7 @@ namespace FlexiTools.Pages
                     RestoreDirectory = true,
                 };
 
-                if(ofd.ShowDialog() != true)
+                if (ofd.ShowDialog() != true)
                 {
                     MessageBox.Show("Nenhum Arquivo Selecionado");
                     return;
@@ -80,9 +68,9 @@ namespace FlexiTools.Pages
 
                 resultado.AppendLine();
                 resultado.AppendLine($"Total: {totalValorPrest.ToString("C", CultureInfo.CurrentCulture)}");
-                txtResultadoDosCalculos.Text = resultado.ToString();
+                ResultadoDosCalculos = resultado.ToString();
 
-                textToprint = resultado.ToString();
+                _textToPrint = resultado.ToString();
             }
             catch (Exception ex)
             {
@@ -115,6 +103,30 @@ namespace FlexiTools.Pages
             catch (Exception)
             {
                 return ($" ", 0m);
+            }
+        }
+
+        private void ExecuteImprimirCommand()
+        {
+            if (string.IsNullOrEmpty(_textToPrint))
+            {
+                MessageBox.Show("Não há texto para imprimir.", "Aviso", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            PrintDialog printDialog = new PrintDialog();
+
+            TextBlock textBlock = new TextBlock
+            {
+                Text = _textToPrint,
+                TextWrapping = TextWrapping.Wrap,
+                FontSize = 10,
+                Margin = new Thickness(10)
+            };
+
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(textBlock, "Impressão de Texto");
             }
         }
     }

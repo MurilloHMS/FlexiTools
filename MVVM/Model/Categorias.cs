@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace FlexiTools.Model
+namespace FlexiTools.MVVM.Model
 {
-    class Categorias
+    public class Categorias
     {
         public string Nome { get; set; }
 

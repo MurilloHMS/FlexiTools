@@ -2,10 +2,9 @@
 using ClosedXML.Excel;
 using System.Windows;
 using System.IO;
-using FlexiTools.Model;
 using System.Collections.Immutable;
 
-namespace flexiTools.Model
+namespace FlexiTools.MVVM.Model
 {
     public class Cartao
     {
@@ -17,7 +16,7 @@ namespace flexiTools.Model
         public string Cliente { get; set; }
 
         private static readonly string funcionariosFile = "funcionarios.json";
-        private static  readonly string categoriasFile = "Categorias.json";
+        private static readonly string categoriasFile = "Categorias.json";
 
         public static async Task GerarPlanilhasPorFuncionarioAsync(IProgress<string> progress)
         {
@@ -40,7 +39,7 @@ namespace flexiTools.Model
             try
             {
                 progress?.Report("Obtendo dados dos Funcionários...");
-                               
+
                 var funcionarios = await Funcionario.GetFuncionarios(funcionariosFile);
 
                 progress?.Report("Lendo dados do arquivo...");
@@ -135,7 +134,7 @@ namespace flexiTools.Model
                                 validation.ErrorStyle = XLErrorStyle.Information;
                                 validation.ErrorMessage = "'Só é possível incluir as categorias pré selecionadas";
                                 row++;
-                                
+
                             }
 
                             var validaton = worksheet.Range("A1:C10000").CreateDataValidation();
@@ -144,7 +143,7 @@ namespace flexiTools.Model
                             validaton.ErrorStyle = XLErrorStyle.Information;
                             validaton.ErrorMessage = "Célula Bloqueada!";
 
-                            
+
 
                             newWorkbook.SaveAs(caminhoArquivo);
                         }
@@ -178,7 +177,7 @@ namespace flexiTools.Model
 
             string[] files = ofd.FileNames;
 
-            foreach (string file in files) 
+            foreach (string file in files)
             {
                 string nome = Path.GetFileName(file);
                 string formatedName = nome.Substring(0, nome.IndexOf("."));

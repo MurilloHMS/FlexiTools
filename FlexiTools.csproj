@@ -10,14 +10,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Pages\assets\Microsoft Excel.ico" />
-    <None Remove="Pages\assets\Save.ico" />
+    <None Remove="MVVM\Pages\assets\Microsoft Excel.ico" />
+    <None Remove="MVVM\Pages\assets\Save.ico" />
     <None Remove="icone-proauto.ico" />
-    <None Remove="Pages\Car.ico" />
-    <None Remove="Pages\Folder.ico" />
-    <None Remove="Pages\Microsoft Excel.ico" />
-    <None Remove="Pages\Print.ico" />
-    <None Remove="Pages\Save.ico" />
+    <None Remove="MVVM\Pages\Car.ico" />
+    <None Remove="MVVM\Pages\Folder.ico" />
+    <None Remove="MVVM\Pages\Microsoft Excel.ico" />
+    <None Remove="MVVM\Pages\Print.ico" />
+    <None Remove="MVVM\Pages\Save.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,13 +31,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Pages\assets\Microsoft Excel.ico" />
-    <Resource Include="Pages\assets\Save.ico" />
+    <Resource Include="MVVM\Pages\assets\Microsoft Excel.ico" />
+    <Resource Include="MVVM\Pages\assets\Save.ico" />
     <Resource Include="icone-proauto.ico" />
-    <Resource Include="Pages\Folder.ico" />
-    <Resource Include="Pages\Microsoft Excel.ico" />
-    <Resource Include="Pages\Print.ico" />
-    <Resource Include="Pages\Save.ico" />
+    <Resource Include="MVVM\Pages\Folder.ico" />
+    <Resource Include="MVVM\Pages\Microsoft Excel.ico" />
+    <Resource Include="MVVM\Pages\Print.ico" />
+    <Resource Include="MVVM\Pages\Save.ico" />
   </ItemGroup>
 
 </Project>
