@@ -75,7 +75,7 @@
                 Width="24"
                 ToolTip="Selecionar Excel"> 
                 <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Microsoft Excel.ico" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="/MVVM/Pages/assets/Microsoft Excel.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
             <Button
@@ -86,7 +86,7 @@
                 Width="24"
                 ToolTip="Salvar Dados">
                 <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Save.ico" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="/MVVM/Pages/assets/Save.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
         </ToolBar>

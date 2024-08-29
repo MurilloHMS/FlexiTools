@@ -88,7 +88,7 @@
                 ToolTip="Salvar Dados"
                 Command="{Binding SaveCommand}">
                 <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Save.ico" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="/MVVM/Pages/assets/Save.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
         </ToolBar>

@@ -3,15 +3,26 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FlexiTools.Pages"
+      xmlns:local="clr-namespace:FlexiTools.MVVM.Pages"
+      xmlns:viewModel="clr-namespace:FlexiTools.MVVM.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page1">
-
+    <Page.DataContext>
+        <viewModel:DadosCartoesViewModel/>
+    </Page.DataContext>
     <Grid Background="#f1f3f5">
-        <Button x:Name="BtnConteudo" Content="Importar dados" FontFamily="ubuntu" VerticalAlignment="top" Cursor="Hand" Click="btnDados_Click" BorderBrush="Transparent"/>
+        <Button Command="{Binding GerarDadosCommand}"
+                Content="Importar dados" 
+                FontFamily="ubuntu" 
+                VerticalAlignment="top" 
+                Cursor="Hand"  
+                BorderBrush="Transparent"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="auto" Margin="20">
-            <TextBlock x:Name="txtConteudo" VerticalAlignment="Top" Margin="0,30,0,0" TextWrapping="Wrap"/>
+            <TextBlock Text="{Binding Conteudo, UpdateSourceTrigger=PropertyChanged}"
+                VerticalAlignment="Top" 
+                Margin="0,30,0,0" 
+                TextWrapping="Wrap"/>
         </ScrollViewer>
     </Grid>
 </Page>

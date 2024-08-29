@@ -22,7 +22,7 @@
                 Width="24"
                 ToolTip="Abrir Arquivos">
                 <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Folder.ico" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="/MVVM/Pages/assets/Folder.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
             <Button
@@ -33,7 +33,7 @@
                 Width="24"
                 ToolTip="Imprimir" >
                 <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Print.ico" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="/MVVM/Pages/assets/Print.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
         </ToolBar>
