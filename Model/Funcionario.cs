@@ -7,7 +7,7 @@ namespace FlexiTools.Model
     {
         public string Nome {  get; set; }
 
-        public async Task<List<Funcionario>> GetFuncionarios(string filePath)
+        public static async Task<List<Funcionario>> GetFuncionarios(string filePath)
         {
 
             if (!File.Exists(filePath))
@@ -24,7 +24,7 @@ namespace FlexiTools.Model
 
         }
 
-        public async Task SetFuncionarios(string filePath, List<Funcionario> funcionarios)
+        public static async Task SetFuncionarios(string filePath, List<Funcionario> funcionarios)
         {
             string json = JsonConvert.SerializeObject(funcionarios, Formatting.Indented);
             using (var writer = new StreamWriter(filePath))

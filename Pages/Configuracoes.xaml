@@ -81,7 +81,7 @@
         </ToolBar>
         <DataGrid x:Name="dgvFuncionarios"
                   AutoGenerateColumns="False"
-                  Margin="0,30,0,10"
+                  Margin="0,30,0,230"
                   CanUserAddRows="True"
                   CanUserDeleteRows="True"
                   CanUserReorderColumns="True"
@@ -90,6 +90,19 @@
                   Cursor="Hand" FontFamily="ubuntu">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Funcionários" Binding="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="dgvCategorias"
+                  AutoGenerateColumns="False"
+                  Margin="0,225,0,10"
+                  CanUserAddRows="True"
+                  CanUserDeleteRows="True"
+                  CanUserReorderColumns="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  Cursor="Hand" FontFamily="ubuntu">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Categorias" Binding="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

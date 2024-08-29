@@ -17,11 +17,11 @@ using System.Windows.Shapes;
 
 namespace FlexiTools.Pages
 {
-    /// <summary>
-    /// Interação lógica para Configuracoes.xam
-    /// </summary>
     public partial class Configuracoes : Page
     {
+        private readonly string funcionariosFile = "funcionarios.json";
+        private readonly string categoriasFile = "Categorias.json";
+
         public Configuracoes()
         {
             InitializeComponent();
@@ -29,19 +29,32 @@ namespace FlexiTools.Pages
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var funcionarios = dgvFuncionarios.ItemsSource as List<Funcionario>;
+                Funcionario.SetFuncionarios(funcionariosFile, funcionarios);
 
-            string file = "funcionarios.json";
-            var dados = dgvFuncionarios.ItemsSource as List<Funcionario>;
-            Funcionario func = new Funcionario();
-            func.SetFuncionarios(file, dados);
+                var categorias = dgvCategorias.ItemsSource as List<Categorias>;
+                Categorias.SetCategoriasAsync(categoriasFile, categorias);
+
+                MessageBox.Show("Dados salvos com sucesso", "Salvar", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+
         }
 
         private async void Page_Initialized(object sender, EventArgs e)
         {
-            string file = "funcionarios.json";
-            Funcionario func = new Funcionario();
-            var funcionarios = await func.GetFuncionarios(file);
-            dgvFuncionarios.ItemsSource = funcionarios;            
+            var funcionarios = await Funcionario.GetFuncionarios(funcionariosFile);
+            dgvFuncionarios.ItemsSource = funcionarios;
+
+            var categorias = await Categorias.GetCategoriasAsync(categoriasFile);
+            dgvCategorias.ItemsSource = categorias;
         }
     }
 }

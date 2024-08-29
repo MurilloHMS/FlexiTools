@@ -2,41 +2,22 @@
 using ClosedXML.Excel;
 using System.Windows;
 using System.IO;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.Extensions.FileProviders.Physical;
-using System.Reflection.Metadata;
 using FlexiTools.Model;
+using System.Collections.Immutable;
 
 namespace flexiTools.Model
 {
     public class Cartao
     {
-        private static readonly string[] CartaoIdentifiers = new[]
-        {
-            "ARNALDO CESAR DA SILVA - FINAL 552640******5537",
-            "FERNANDO TERUYUKI KINUKAWA - FINAL 552640******1383",
-            "JACKSON ALBERTO RUIZ - FINAL 552640******1763",
-            "FERNANDA FATTORI RAMALHO - FINAL 552640******3477",
-            "TIAGO DE MELLO SIQUEIRA - FINAL 552640******2770",
-            "EDOMAR HILARIO DA COSTA - FINAL 552640******5181",
-            "JOSE RICARDO VILELA DE OLI - FINAL 552640******0529",
-            "ROGGER BACH GOLDINHO - FINAL 552640******7443",
-            "AILA MARIA SEREFIM - FINAL 552640******9511",
-            "EDILENE SIMONELLI DE CARVA - FINAL 552640******9934",
-            "NAZIR ABRAO FILHO - FINAL 552640******5760",
-            "WAGNER DA SILVA SANTOS - FINAL 552640 * *****2737",
-            "GUSTAVO BACELAR MOREIRA DE - FINAL 552640******2953",
-            "RODRIGO LEITE DOMINGUES - FINAL 552640******8827"
-        };
-
         public string Nome { get; set; }
         public DateTime Data { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         public string Categoria { get; set; }
         public string Cliente { get; set; }
+
+        private static readonly string funcionariosFile = "funcionarios.json";
+        private static  readonly string categoriasFile = "Categorias.json";
 
         public static async Task GerarPlanilhasPorFuncionarioAsync(IProgress<string> progress)
         {
@@ -59,9 +40,8 @@ namespace flexiTools.Model
             try
             {
                 progress?.Report("Obtendo dados dos Funcionários...");
-                string file = "funcionarios.json";
-                Funcionario func = new Funcionario();
-                var funcionarios = await func.GetFuncionarios(file);
+                               
+                var funcionarios = await Funcionario.GetFuncionarios(funcionariosFile);
 
                 progress?.Report("Lendo dados do arquivo...");
 
@@ -146,8 +126,9 @@ namespace flexiTools.Model
                                 worksheet.Cell(row, 2).Value = descricao;
                                 worksheet.Cell(row, 3).Value = valor;
 
-                                var categorias = new List<string> { "ALIMENTAÇÃO", "COMBUSTIVEL", "HOTEL", "PASSAGENS", "PEÇAS E EQUIPAMENTOS" };
-                                var validCategorias = $"\"{string.Join(",", categorias)}\"";
+                                var categorias = Categorias.GetCategoriasAsync(categoriasFile);
+                                var valir = categorias.Result.Select(x => x.Nome);
+                                var validCategorias = $"\"{string.Join(",", valir)}\"";
                                 var validation = worksheet.Cell(row, 4).CreateDataValidation();
                                 validation.List(validCategorias, true);
                                 validation.ErrorTitle = "Categorias Bloqueadas";
