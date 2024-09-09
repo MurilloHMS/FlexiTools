@@ -30,10 +30,11 @@
                     <ImageBrush ImageSource="/MVVM/Pages/Assets/Pdf.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button Command="{Binding OpenFiles}"
-                Style="{StaticResource ToolTipButton}">
+            <Button Command="{Binding SaveArchives}"
+                    Style="{StaticResource ToolTipButton}"
+                    ToolTip="Salvar Arquivos">
                 <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Assets/Folder.ico" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="/MVVM/Pages/Assets/Save.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
         </ToolBar>

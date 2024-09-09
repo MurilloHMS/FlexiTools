@@ -12,7 +12,7 @@ namespace FlexiTools.MVVM.Model
     {
         public string Nome {  get; set; }
 
-        public static List<SepararPDF> GetSeparatePdfByPage(string inputPdfPath, string outputFolder)
+        public static List<SepararPDF> GetSeparatePdfByPage(string inputPdfPath)
         {        
             try
             {
@@ -60,7 +60,7 @@ namespace FlexiTools.MVVM.Model
                     pageNum++;
                 }
 
-                MessageBox.Show($"Arquivos Separados em {pageNum} arquivos e salvos em : \n\n {outputFolder}", "Salvamento de Arquivos", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Arquivos Separados em {pageNum} arquivos e salvos em : \n\n {outputFolder}", "Salvamento de Arquivos", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 inputDocument.Close();
             }
