@@ -9,7 +9,7 @@ namespace FlexiTools.MVVM.Model
     public class Cartao
     {
         public string Nome { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime? Data { get; set; }
         public string Descricao { get; set; }
         public decimal Valor { get; set; }
         public string Categoria { get; set; }
@@ -191,7 +191,7 @@ namespace FlexiTools.MVVM.Model
                                         .Skip(1)
                                         .Select(row => new Cartao
                                         {
-                                            Data = row.Cell(1).TryGetValue<DateTime>(out var data) ? data : DateTime.Now,
+                                            Data = row.Cell(1).TryGetValue<DateTime>(out var data) ? data : null,
                                             Descricao = row.Cell(2).TryGetValue<string>(out var descricao) ? descricao : null,
                                             Valor = row.Cell(3).TryGetValue<decimal>(out var valor) ? valor : 0m,
                                             Categoria = row.Cell(4).TryGetValue<string>(out var categoria) ? categoria : null,
