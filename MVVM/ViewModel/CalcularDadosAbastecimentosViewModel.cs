@@ -41,8 +41,15 @@ namespace FlexiTools.MVVM.ViewModel
         {
             var dados = await Abastecimentos.GetAbastecimentosAsync();
             Abastecimento.Clear();
-            foreach(var abs in dados)
+
+            foreach (var abs in dados)
             {
+                switch (abs.PlacaDoVeiculo)
+                {
+                    case "FHH7I86":
+                        abs.ModeloDoVeiculo = "Fiat Mobi";
+                        break;
+                }
                 Abastecimento.Add(abs);
             }
         }
