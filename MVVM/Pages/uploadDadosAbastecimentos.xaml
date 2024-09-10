@@ -80,6 +80,16 @@
                     <ImageBrush ImageSource="/MVVM/Pages/assets/Microsoft Excel.ico" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
+            <Button Command="{Binding SalvarArquivo}"
+                Cursor="Hand"
+                BorderBrush="Transparent"                 
+                Height="20"
+                Width="24"
+                ToolTip="Salvar Dados">
+                <Button.Background>
+                    <ImageBrush ImageSource="/MVVM/Pages/assets/Save.ico" Stretch="UniformToFill"/>
+                </Button.Background>
+            </Button>
         </ToolBar>
         <DataGrid ItemsSource="{Binding Abastecimento}"
               AutoGenerateColumns="true"
