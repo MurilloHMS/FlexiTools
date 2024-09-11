@@ -72,11 +72,8 @@
     <Grid Background="#f1f3f5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- ToolBar -->
             <RowDefinition Height="*"/>
-            <!-- DataGrid for Funcionarios -->
             <RowDefinition Height="*" />
-            <!-- DataGrid for Categorias -->
         </Grid.RowDefinitions>
 
         <ToolBar Grid.Row="0" Height="20" VerticalAlignment="Top">
@@ -86,7 +83,7 @@
                 Height="20"
                 Width="24"
                 ToolTip="Salvar Dados"
-                Command="{Binding SaveCommand}">
+                Command="{Binding SaveComamnd}">
                 <Button.Background>
                     <ImageBrush ImageSource="/MVVM/Pages/assets/Save.ico" Stretch="UniformToFill"/>
                 </Button.Background>
@@ -108,6 +105,9 @@
                   HorizontalScrollBarVisibility="Auto">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Funcionários" Binding="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Departamento" Binding="{Binding Departamento, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Categorias" Binding="{Binding Hash, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Grid.Row="2"

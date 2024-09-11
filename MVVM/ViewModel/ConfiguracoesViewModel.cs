@@ -1,6 +1,7 @@
 ﻿using FlexiTools.MVVM.Model;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FlexiTools.MVVM.ViewModel
@@ -52,6 +53,8 @@ namespace FlexiTools.MVVM.ViewModel
         {
             await Funcionario.SetFuncionarios(funcionariosFile, new List<Funcionario>(Funcionarios));
             await Categorias.SetCategoriasAsync(categoriasFile, new List<Categorias>(Categoria));
+            MessageBox.Show("Dados salvos com sucesso!", "Salvamento", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
     }
 }
