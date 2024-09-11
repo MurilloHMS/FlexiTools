@@ -8,16 +8,18 @@ using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace FlexiTools.MVVM.Model
 {
     internal class Abastecimentos
     {
-        public DateTime? DataAbastecimento { get; set; }
+        public string? DataAbastecimento { get; set; }
         public string? StatusEmissaoNFe { get; set; }
         public string? CNPJ { get; set; }
         public string? RazaoSocial { get; set; }
@@ -30,6 +32,11 @@ namespace FlexiTools.MVVM.Model
         public string? UfEstabelecimento { get; set; }
         public string? PlacaDoVeiculo { get; set; }
         public string? ModeloDoVeiculo { get; set; }
+        public string? FabricanteVeiculo { get; set; }
+        public double? ConsumoUrbanoAlcool { get; set; }
+        public double? ConsumoRodoviárioAlcool { get; set; }
+        public double? ConsumoUrbanoGasolina { get; set; }
+        public double? ConsumoRodoviárioGasolina { get; set; }
         public string? NomeDoMotorista { get; set; }
         public string? LatitudeElongitudeDispositivo { get; set; }
         public string? latitudeElogitudePosto { get; set; }
@@ -52,7 +59,8 @@ namespace FlexiTools.MVVM.Model
             OpenFileDialog ofd = new OpenFileDialog()
             {
                 Multiselect = false,
-                Title = "Selecione a planilha de abastecimento"
+                Title = "Selecione a planilha de abastecimento",
+                Filter = "Excel Files|*.xlsx"
             };
 
             if (ofd.ShowDialog() != true)
@@ -61,48 +69,59 @@ namespace FlexiTools.MVVM.Model
                 return Enumerable.Empty<Abastecimentos>();
             }
 
-            await Task.Run(() =>
+            try
             {
-                using (XLWorkbook wb = new XLWorkbook(ofd.FileName))
+                await Task.Run(() =>
                 {
-                    var planilha = wb.Worksheet(1);
-                    var filedata = planilha.RowsUsed().Skip(1).Select(row => new Abastecimentos
+                    using (XLWorkbook wb = new XLWorkbook(ofd.FileName))
                     {
-                        DataAbastecimento = row.Cell(6).TryGetValue<string>(out var dataAbastecimento) ? DateTime.Parse(dataAbastecimento) : null,
-                        StatusEmissaoNFe = row.Cell(7).TryGetValue<string>(out var statusEmissaoNFe) ? statusEmissaoNFe : null,
-                        CNPJ = row.Cell(8).TryGetValue<string>(out var CNPJ) ? CNPJ : null,
-                        RazaoSocial = row.Cell(9).TryGetValue<string>(out var RazaoSocial) ? RazaoSocial : null,
-                        NomeFantasia = row.Cell(10).TryGetValue<string>(out var nomeFantasia) ? nomeFantasia : null,
-                        CNPJEstabelecimento = row.Cell(11).TryGetValue<string>(out var cnpjEstabelecimento) ? cnpjEstabelecimento : null,
-                        RazaoSocialEstabelecimento = row.Cell(12).TryGetValue<string>(out var razaoSocialEstabelecimento) ? razaoSocialEstabelecimento : null,
-                        NomeFantasiaEstabelecimetno = row.Cell(13).TryGetValue<string>(out var nomeFantasiaEstabelecimento) ? nomeFantasiaEstabelecimento : null,
-                        EnderecoEstabelecimento = row.Cell(14).TryGetValue<string>(out var enderecoEstabelecimento) ? enderecoEstabelecimento : null,
-                        CidadeEstabelecimento = row.Cell(15).TryGetValue<string>(out var cidadeEstabelecimento) ? cidadeEstabelecimento : null,
-                        UfEstabelecimento = row.Cell(16).TryGetValue<string>(out var ufEstabelecimento) ? ufEstabelecimento : null,
-                        PlacaDoVeiculo = row.Cell(17).TryGetValue<string>(out var placaDoVeiculo) ? placaDoVeiculo : null,
-                        LatitudeElongitudeDispositivo = row.Cell(23).TryGetValue<string>(out var longitudeLatitudeDispositivo) ? longitudeLatitudeDispositivo : null,
-                        latitudeElogitudePosto = row.Cell(24).TryGetValue<string>(out var longitudeLatitudePosto) ? longitudeLatitudePosto : null,
-                        HodometroAtual = row.Cell(26).TryGetValue<decimal>(out var hodometroAtual) ? hodometroAtual : null,
-                        HodometroAnterior = row.Cell(27).TryGetValue<decimal>(out var hodometroAnterior) ? hodometroAnterior : null,
-                        DiferencaHodometro = row.Cell(28).TryGetValue<decimal>(out var diferencaHodometro) ? diferencaHodometro : null,
-                        MediaKm = row.Cell(29).TryGetValue<decimal>(out var mediaKM) ? mediaKM : null,
-                        MeioDePagamento = row.Cell(33).TryGetValue<string>(out var meioDePagamento) ? meioDePagamento : null,
-                        Produto = row.Cell(40).TryGetValue<string>(out var produto) ? produto : null,
-                        Litros = row.Cell(41).TryGetValue<decimal>(out var litros) ? litros : null,
-                        VlrLitro = row.Cell(42).TryGetValue<decimal>(out var vlrLitro) ? vlrLitro : null,
-                        VlrTotalProdutos = row.Cell(43).TryGetValue<decimal>(out var vlrTotalProdutos) ? vlrTotalProdutos : null,
-                        VlrTotalValidado = vlrLitro * litros,
-                        Validacao = vlrTotalProdutos == vlrLitro * litros ? true : false
+                        var planilha = wb.Worksheet(1);
+                        var filedata = planilha.RowsUsed().Skip(1).Select(row => new Abastecimentos
+                        {
+                            DataAbastecimento = row.Cell(6).TryGetValue<string>(out var dataAbastecimento) ? dataAbastecimento : null,
+                            StatusEmissaoNFe = row.Cell(7).TryGetValue<string>(out var statusEmissaoNFe) ? statusEmissaoNFe : null,
+                            CNPJ = row.Cell(8).TryGetValue<string>(out var CNPJ) ? CNPJ : null,
+                            RazaoSocial = row.Cell(9).TryGetValue<string>(out var RazaoSocial) ? RazaoSocial : null,
+                            NomeFantasia = row.Cell(10).TryGetValue<string>(out var nomeFantasia) ? nomeFantasia : null,
+                            CNPJEstabelecimento = row.Cell(11).TryGetValue<string>(out var cnpjEstabelecimento) ? cnpjEstabelecimento : null,
+                            RazaoSocialEstabelecimento = row.Cell(12).TryGetValue<string>(out var razaoSocialEstabelecimento) ? razaoSocialEstabelecimento : null,
+                            NomeFantasiaEstabelecimetno = row.Cell(13).TryGetValue<string>(out var nomeFantasiaEstabelecimento) ? nomeFantasiaEstabelecimento : null,
+                            EnderecoEstabelecimento = row.Cell(14).TryGetValue<string>(out var enderecoEstabelecimento) ? enderecoEstabelecimento : null,
+                            CidadeEstabelecimento = row.Cell(15).TryGetValue<string>(out var cidadeEstabelecimento) ? cidadeEstabelecimento : null,
+                            UfEstabelecimento = row.Cell(16).TryGetValue<string>(out var ufEstabelecimento) ? ufEstabelecimento : null,
+                            PlacaDoVeiculo = row.Cell(17).TryGetValue<string>(out var placaDoVeiculo) ? placaDoVeiculo : null,
+                            LatitudeElongitudeDispositivo = row.Cell(23).TryGetValue<string>(out var longitudeLatitudeDispositivo) ? longitudeLatitudeDispositivo : null,
+                            latitudeElogitudePosto = row.Cell(24).TryGetValue<string>(out var longitudeLatitudePosto) ? longitudeLatitudePosto : null,
+                            HodometroAtual = row.Cell(26).TryGetValue<decimal>(out var hodometroAtual) ? hodometroAtual : null,
+                            HodometroAnterior = row.Cell(27).TryGetValue<decimal>(out var hodometroAnterior) ? hodometroAnterior : null,
+                            DiferencaHodometro = row.Cell(28).TryGetValue<decimal>(out var diferencaHodometro) ? diferencaHodometro : null,
+                            MediaKm = row.Cell(29).TryGetValue<decimal>(out var mediaKM) ? mediaKM : null,
+                            MeioDePagamento = row.Cell(33).TryGetValue<string>(out var meioDePagamento) ? meioDePagamento : null,
+                            Produto = row.Cell(40).TryGetValue<string>(out var produto) ? produto : null,
+                            Litros = row.Cell(41).TryGetValue<decimal>(out var litros) ? litros : null,
+                            VlrLitro = row.Cell(42).TryGetValue<decimal>(out var vlrLitro) ? vlrLitro : null,
+                            VlrTotalProdutos = row.Cell(43).TryGetValue<decimal>(out var vlrTotalProdutos) ? vlrTotalProdutos : null,
+                            VlrTotalValidado = vlrLitro * litros,
+                            Validacao = vlrTotalProdutos == vlrLitro * litros ? true : false
 
-                    }).ToList();
+                        }).ToList();
 
-                    lock (abastecimentos)
-                    {
-                        abastecimentos.AddRange(filedata);
+                        lock (abastecimentos)
+                        {
+                            abastecimentos.AddRange(filedata);
+                        }
                     }
-                }
-            });
+                });
+            }
+            catch(IOException ex)
+            {
+                MessageBox.Show($"Ocorreu um erro ao abrir o arquivo: {ex.Message}", "IOException", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Ocorreu um erro inesperado: {ex.Message}", "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
 
+            }
             return abastecimentos;
         }
 
@@ -135,20 +154,25 @@ namespace FlexiTools.MVVM.Model
                             worksheet.Cell(newLine, 11).Value = row.UfEstabelecimento;
                             worksheet.Cell(newLine, 12).Value = row.PlacaDoVeiculo;
                             worksheet.Cell(newLine, 13).Value = row.ModeloDoVeiculo;
-                            worksheet.Cell(newLine, 14).Value = row.NomeDoMotorista;
-                            worksheet.Cell(newLine, 15).Value = row.LatitudeElongitudeDispositivo;
-                            worksheet.Cell(newLine, 16).Value = row.latitudeElogitudePosto;
-                            worksheet.Cell(newLine, 17).Value = row.HodometroAtual;
-                            worksheet.Cell(newLine, 18).Value = row.HodometroAnterior;
-                            worksheet.Cell(newLine, 19).Value = row.DiferencaHodometro;
-                            worksheet.Cell(newLine, 20).Value = row.MediaKm;
-                            worksheet.Cell(newLine, 21).Value = row.MeioDePagamento;
-                            worksheet.Cell(newLine, 22).Value = row.Produto;
-                            worksheet.Cell(newLine, 23).Value = row.Litros;
-                            worksheet.Cell(newLine, 24).Value = row.VlrLitro;
-                            worksheet.Cell(newLine, 25).Value = row.VlrTotalProdutos;
-                            worksheet.Cell(newLine, 26).Value = row.VlrTotalValidado;
-                            worksheet.Cell(newLine, 27).Value = $"{row.Validacao}";
+                            worksheet.Cell(newLine, 14).Value = row.FabricanteVeiculo;
+                            worksheet.Cell(newLine, 15).Value = row.ConsumoUrbanoAlcool;
+                            worksheet.Cell(newLine, 16).Value = row.ConsumoRodoviárioAlcool;
+                            worksheet.Cell(newLine, 17).Value = row.ConsumoUrbanoGasolina;
+                            worksheet.Cell(newLine, 18).Value = row.ConsumoRodoviárioGasolina;
+                            worksheet.Cell(newLine, 19).Value = row.NomeDoMotorista;
+                            worksheet.Cell(newLine, 20).Value = row.LatitudeElongitudeDispositivo;
+                            worksheet.Cell(newLine, 21).Value = row.latitudeElogitudePosto;
+                            worksheet.Cell(newLine, 22).Value = row.HodometroAtual;
+                            worksheet.Cell(newLine, 23).Value = row.HodometroAnterior;
+                            worksheet.Cell(newLine, 24).Value = row.DiferencaHodometro;
+                            worksheet.Cell(newLine, 25).Value = row.MediaKm;
+                            worksheet.Cell(newLine, 26).Value = row.MeioDePagamento;
+                            worksheet.Cell(newLine, 27).Value = row.Produto;
+                            worksheet.Cell(newLine, 28).Value = row.Litros;
+                            worksheet.Cell(newLine, 29).Value = row.VlrLitro;
+                            worksheet.Cell(newLine, 30).Value = row.VlrTotalProdutos;
+                            worksheet.Cell(newLine, 31).Value = row.VlrTotalValidado;
+                            worksheet.Cell(newLine, 32).Value = $"{row.Validacao}";
                             newLine++;
                         }
 
@@ -159,7 +183,6 @@ namespace FlexiTools.MVVM.Model
             }
             catch (IOException ex)
             {
-
                 MessageBox.Show($"Ocorreu um erro ao salvar o arquivo: {ex.Message}", "IOException", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             catch(Exception ex)

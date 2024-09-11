@@ -8,7 +8,8 @@
         Title="FlexiTools" 
         SnapsToDevicePixels="True"
         Height="700" Width="1100" Icon="/icone-proauto.ico"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
 
     <Grid>
         <Grid.ColumnDefinitions>
