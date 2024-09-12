@@ -11,31 +11,21 @@
     <Page.DataContext>
         <viewModel:SepararPdfViewModel/>
     </Page.DataContext>
-
-    <Page.Resources>
-        <Style x:Key="ToolTipButton" TargetType="Button">
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Width" Value="25"/>
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="BorderBrush" Value="transparent"/>
-        </Style>
-    </Page.Resources>
-
     <Grid Background="#f1f3f5" >
-        <ToolBar VerticalAlignment="Top" Height="25">
+        <ToolBar VerticalAlignment="Top" Height="30">
             <Button Command="{Binding OpenFiles}"
-                Style="{StaticResource ToolTipButton}"
+                Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Abrir Arquivo">
-                <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Assets/Pdf.ico" Stretch="UniformToFill"/>
-                </Button.Background>
+                <Button.Content>
+                    <Image Source="pack://application:,,,/MVVM/Pages/Assets/Pdf.ico" Width="25" Height="25"/>
+                </Button.Content>
             </Button>
             <Button Command="{Binding SaveArchives}"
-                    Style="{StaticResource ToolTipButton}"
+                    Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Salvar Arquivos">
-                <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/Assets/Save.ico" Stretch="UniformToFill"/>
-                </Button.Background>
+                <Button.Content>
+                    <Image Source="pack://application:,,,/MVVM/Pages/Assets/Save.ico" Width="25" Height="25"/>
+                </Button.Content>
             </Button>
         </ToolBar>
         <DataGrid

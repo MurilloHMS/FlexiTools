@@ -69,31 +69,29 @@
         </Style>
     </Page.Resources>
     <Grid Background="#f1f3f5">
-        <ToolBar Height="20" VerticalAlignment="Top">
+        <ToolBar Height="30" VerticalAlignment="Top">
             <Button Command="{Binding AbrirArquivo}"
             Cursor="Hand"
             BorderBrush="Transparent"                 
-            Height="20"
-            Width="24"
+            Style="{DynamicResource ToolBarCustomButtom}"
             ToolTip="Selecionar Excel">
-                <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/assets/Microsoft Excel.ico" Stretch="UniformToFill"/>
-                </Button.Background>
+                <Button.Content>
+                    <Image Source="pack://application:,,,/MVVM/Pages/assets/Microsoft Excel.ico" Width="25" Height="25"/>
+                </Button.Content>
             </Button>
             <Button Command="{Binding SalvarArquivo}"
                 Cursor="Hand"
                 BorderBrush="Transparent"                 
-                Height="20"
-                Width="24"
+                Style="{DynamicResource ToolBarCustomButtom}"
                 ToolTip="Salvar Dados">
-                <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/assets/Save.ico" Stretch="UniformToFill"/>
-                </Button.Background>
+                <Button.Content>
+                    <Image Source="pack://application:,,,/MVVM/Pages/assets/Save.ico" Width="25" Height="25"/>
+                </Button.Content>
             </Button>
         </ToolBar>
         <DataGrid ItemsSource="{Binding Abastecimento}"
               AutoGenerateColumns="true"
-              Margin="0,25,0,10"
+              Margin="0,35,0,10"
               CanUserAddRows="False"
               CanUserDeleteRows="False"
               CanUserReorderColumns="True"

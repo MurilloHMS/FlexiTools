@@ -76,17 +76,18 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <ToolBar Grid.Row="0" Height="20" VerticalAlignment="Top">
+        <ToolBar Grid.Row="0" Height="30" VerticalAlignment="Top">
             <Button
                 Cursor="Hand"
                 BorderBrush="Transparent"
                 Height="20"
                 Width="24"
                 ToolTip="Salvar Dados"
-                Command="{Binding SaveComamnd}">
-                <Button.Background>
-                    <ImageBrush ImageSource="/MVVM/Pages/assets/Save.ico" Stretch="UniformToFill"/>
-                </Button.Background>
+                Command="{Binding SaveComamnd}"
+                Style="{DynamicResource ToolBarCustomButtom}">
+                <Button.Content>
+                    <Image Source="pack://application:,,,/MVVM/Pages/assets/Save.ico" Width="20" Height="20"/>
+                </Button.Content>
             </Button>
         </ToolBar>
 
