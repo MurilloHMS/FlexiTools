@@ -105,7 +105,6 @@ namespace FlexiTools.MVVM.ViewModel
                 return ($" ", 0m);
             }
         }
-
         private void ExecuteImprimirCommand()
         {
             if (string.IsNullOrEmpty(_textToPrint))

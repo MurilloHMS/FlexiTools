@@ -42,7 +42,10 @@ namespace FlexiTools.MVVM.ViewModel
 
         private async Task LoadDataAsync()
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            OpenFileDialog ofd = new OpenFileDialog() 
+            {
+                Filter = "Arquivos PDF|*.pdf"
+            };
 
             if(ofd.ShowDialog() != true) { return; }
             _pdfFileName = ofd.FileName;
@@ -52,7 +55,7 @@ namespace FlexiTools.MVVM.ViewModel
         private async Task SaveFiles()
         {
             List<SepararPDF> pages = new List<SepararPDF>();
-            foreach(var page in Pages)
+            foreach (var page in Pages)
             {
                 pages.Add(page);
             }
