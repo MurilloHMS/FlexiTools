@@ -30,7 +30,7 @@ namespace FlexiTools.MVVM.ViewModel
         public CalculosAlfaTransportesViewModel()
         {
             AbrirCommand = new RelayCommand(ExecuteAbrirCommand);
-            ImprimirCommand = new RelayCommand(ExecuteImprimirCommand);
+            ImprimirCommand = new RelayCommand(ExecuteImprimirCommand, CanPrint);
         }
 
         private void ExecuteAbrirCommand()
@@ -128,6 +128,11 @@ namespace FlexiTools.MVVM.ViewModel
             {
                 printDialog.PrintVisual(textBlock, "Impressão de Texto");
             }
+        }
+
+        private bool CanPrint()
+        {
+            return !string.IsNullOrEmpty(_textToPrint);
         }
     }
 }

@@ -166,6 +166,7 @@ namespace FlexiTools.MVVM.Model
 
             OpenFileDialog ofd = new OpenFileDialog()
             {
+                Filter = "Arquivos Excel (*.xlsx)|*.xlsx|Todos os Arquivos (*.*)|*.*",
                 Multiselect = true
             };
 

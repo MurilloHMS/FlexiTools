@@ -35,7 +35,7 @@ namespace FlexiTools.MVVM.ViewModel
         public SepararPdfViewModel()
         {
             OpenFiles = new RelayCommand(async () => await LoadDataAsync());
-            SaveArchives = new RelayCommand(async () => await SaveFiles());
+            SaveArchives = new RelayCommand(async () => await SaveFiles(), CanSave);
         }
 
         
@@ -61,6 +61,11 @@ namespace FlexiTools.MVVM.ViewModel
             if (ofd.ShowDialog() != true) { return; }
             _pdfDirectory = ofd.FolderName;
             SepararPDF.SeparatedPdfByPage(_pdfFileName, _pdfDirectory, pages);
+        }
+
+        private bool CanSave()
+        {
+            return Pages != null;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace FlexiTools.MVVM.ViewModel
 
             Abastecimento = new ObservableCollection<Abastecimentos>();
             AbrirArquivo = new RelayCommand(async () => await ImportExcelData());
-            SalvarArquivo = new RelayCommand(async () => await SaveExcelData());
+            SalvarArquivo = new RelayCommand(async () => await SaveExcelData(), canSave);
 
             _vehicles = new Dictionary<string, Vehicle>
             {
@@ -126,6 +126,11 @@ namespace FlexiTools.MVVM.ViewModel
             await Abastecimentos.SaveDataAsync(ofd.FileName, Abastecimento);
 
             
+        }
+
+        private bool canSave()
+        {
+            return Abastecimento.Count > 0;
         }
     }
 

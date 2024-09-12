@@ -15,6 +15,7 @@ namespace FlexiTools.MVVM.ViewModel
     {
         private ObservableCollection<Cartao> _cartoes;
         private ICollectionView _cartoesGroupedView;
+        private string texto;
 
         public ObservableCollection<Cartao> Cartoes
         {
