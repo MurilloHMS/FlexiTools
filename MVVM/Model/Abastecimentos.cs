@@ -38,19 +38,20 @@ namespace FlexiTools.MVVM.Model
         public double? ConsumoUrbanoGasolina { get; set; }
         public double? ConsumoRodoviárioGasolina { get; set; }
         public string? NomeDoMotorista { get; set; }
+        public string? SetorDoMotorista { get; set; }
         public string? LatitudeElongitudeDispositivo { get; set; }
         public string? latitudeElogitudePosto { get; set; }
         public decimal? HodometroAtual { get; set; }
         public decimal? HodometroAnterior { get; set; }
         public decimal? DiferencaHodometro { get; set; }
-        public decimal? MediaKm { get; set; }
+        public double? MediaKm { get; set; }
         public string? MeioDePagamento { get; set; }
         public string? Produto { get; set; }
         public decimal? Litros { get; set; }
         public decimal? VlrLitro { get; set; }
         public decimal? VlrTotalProdutos { get; set; }
         public decimal? VlrTotalValidado { get; set; }
-        public bool? Validacao { get; set; }
+        public string? Validacao { get; set; }
 
         public static async Task<IEnumerable<Abastecimentos>> GetAbastecimentosAsync()
         {
@@ -90,19 +91,19 @@ namespace FlexiTools.MVVM.Model
                             CidadeEstabelecimento = row.Cell(15).TryGetValue<string>(out var cidadeEstabelecimento) ? cidadeEstabelecimento : null,
                             UfEstabelecimento = row.Cell(16).TryGetValue<string>(out var ufEstabelecimento) ? ufEstabelecimento : null,
                             PlacaDoVeiculo = row.Cell(17).TryGetValue<string>(out var placaDoVeiculo) ? placaDoVeiculo : null,
+                            NomeDoMotorista = row.Cell(21).TryGetValue<string>(out var nomeDoMotorista) ? nomeDoMotorista : null,
                             LatitudeElongitudeDispositivo = row.Cell(23).TryGetValue<string>(out var longitudeLatitudeDispositivo) ? longitudeLatitudeDispositivo : null,
                             latitudeElogitudePosto = row.Cell(24).TryGetValue<string>(out var longitudeLatitudePosto) ? longitudeLatitudePosto : null,
                             HodometroAtual = row.Cell(26).TryGetValue<decimal>(out var hodometroAtual) ? hodometroAtual : null,
                             HodometroAnterior = row.Cell(27).TryGetValue<decimal>(out var hodometroAnterior) ? hodometroAnterior : null,
                             DiferencaHodometro = row.Cell(28).TryGetValue<decimal>(out var diferencaHodometro) ? diferencaHodometro : null,
-                            MediaKm = row.Cell(29).TryGetValue<decimal>(out var mediaKM) ? mediaKM : null,
+                            MediaKm = row.Cell(29).TryGetValue<double>(out var mediaKM) ? mediaKM : null,
                             MeioDePagamento = row.Cell(33).TryGetValue<string>(out var meioDePagamento) ? meioDePagamento : null,
                             Produto = row.Cell(40).TryGetValue<string>(out var produto) ? produto : null,
                             Litros = row.Cell(41).TryGetValue<decimal>(out var litros) ? litros : null,
                             VlrLitro = row.Cell(42).TryGetValue<decimal>(out var vlrLitro) ? vlrLitro : null,
                             VlrTotalProdutos = row.Cell(43).TryGetValue<decimal>(out var vlrTotalProdutos) ? vlrTotalProdutos : null,
-                            VlrTotalValidado = vlrLitro * litros,
-                            Validacao = vlrTotalProdutos == vlrLitro * litros ? true : false
+                            VlrTotalValidado = vlrLitro * litros
 
                         }).ToList();
 
@@ -160,19 +161,20 @@ namespace FlexiTools.MVVM.Model
                             worksheet.Cell(newLine, 17).Value = row.ConsumoUrbanoGasolina;
                             worksheet.Cell(newLine, 18).Value = row.ConsumoRodoviárioGasolina;
                             worksheet.Cell(newLine, 19).Value = row.NomeDoMotorista;
-                            worksheet.Cell(newLine, 20).Value = row.LatitudeElongitudeDispositivo;
-                            worksheet.Cell(newLine, 21).Value = row.latitudeElogitudePosto;
-                            worksheet.Cell(newLine, 22).Value = row.HodometroAtual;
-                            worksheet.Cell(newLine, 23).Value = row.HodometroAnterior;
-                            worksheet.Cell(newLine, 24).Value = row.DiferencaHodometro;
-                            worksheet.Cell(newLine, 25).Value = row.MediaKm;
-                            worksheet.Cell(newLine, 26).Value = row.MeioDePagamento;
-                            worksheet.Cell(newLine, 27).Value = row.Produto;
-                            worksheet.Cell(newLine, 28).Value = row.Litros;
-                            worksheet.Cell(newLine, 29).Value = row.VlrLitro;
-                            worksheet.Cell(newLine, 30).Value = row.VlrTotalProdutos;
-                            worksheet.Cell(newLine, 31).Value = row.VlrTotalValidado;
-                            worksheet.Cell(newLine, 32).Value = $"{row.Validacao}";
+                            worksheet.Cell(newLine, 20).Value = row.SetorDoMotorista;
+                            worksheet.Cell(newLine, 21).Value = row.LatitudeElongitudeDispositivo;
+                            worksheet.Cell(newLine, 22).Value = row.latitudeElogitudePosto;
+                            worksheet.Cell(newLine, 23).Value = row.HodometroAtual;
+                            worksheet.Cell(newLine, 24).Value = row.HodometroAnterior;
+                            worksheet.Cell(newLine, 25).Value = row.DiferencaHodometro;
+                            worksheet.Cell(newLine, 26).Value = row.MediaKm;
+                            worksheet.Cell(newLine, 27).Value = row.MeioDePagamento;
+                            worksheet.Cell(newLine, 28).Value = row.Produto;
+                            worksheet.Cell(newLine, 29).Value = row.Litros;
+                            worksheet.Cell(newLine, 30).Value = row.VlrLitro;
+                            worksheet.Cell(newLine, 31).Value = row.VlrTotalProdutos;
+                            worksheet.Cell(newLine, 32).Value = row.VlrTotalValidado;
+                            worksheet.Cell(newLine, 33).Value = $"{row.Validacao}";
                             newLine++;
                         }
 

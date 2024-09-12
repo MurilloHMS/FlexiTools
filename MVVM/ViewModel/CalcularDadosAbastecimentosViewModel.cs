@@ -74,6 +74,7 @@ namespace FlexiTools.MVVM.ViewModel
             try 
             {
                 var dados = await Abastecimentos.GetAbastecimentosAsync();
+                var funcionarios = await Funcionario.GetFuncionarios("funcionarios.json");
                 Abastecimento.Clear();
 
 
@@ -88,6 +89,13 @@ namespace FlexiTools.MVVM.ViewModel
                         abs.ConsumoUrbanoGasolina = vehicle.UrbanGasolineConsumption;
                         abs.ConsumoRodoviárioGasolina = vehicle.RoadGasolineConsuption;
                     }
+                    var funcionario = funcionarios.FirstOrDefault(x => x != null && x.Hash != null && x.Hash.Equals(abs.NomeDoMotorista));
+                    if (funcionario != null)
+                    {
+                        abs.NomeDoMotorista = funcionario.Nome;
+                        abs.SetorDoMotorista = funcionario.Departamento;
+                    }
+                    abs.Validacao = abs.MediaKm < abs.ConsumoUrbanoGasolina ? "Consumo Médio menor que o informado pelo Fabricante" : "";
                     Abastecimento.Add(abs);
                 }
             }
