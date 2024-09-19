@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

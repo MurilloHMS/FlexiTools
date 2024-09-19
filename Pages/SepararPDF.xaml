@@ -1,10 +1,10 @@
-﻿<Page x:Class="FlexiTools.MVVM.Pages.SepararPDF"
+﻿<Page x:Class="FlexiTools.Pages.SepararPDF"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:FlexiTools.MVVM.Pages"
-      xmlns:viewModel="clr-namespace:FlexiTools.MVVM.ViewModel"
+      xmlns:local="clr-namespace:FlexiTools.Pages"
+      xmlns:viewModel="clr-namespace:FlexiTools.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SepararPDF">
@@ -17,14 +17,14 @@
                 Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Abrir Arquivo">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/MVVM/Pages/Assets/Pdf.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/Pages/Assets/Pdf.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
             <Button Command="{Binding SaveArchives}"
                     Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Salvar Arquivos">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/MVVM/Pages/Assets/Save.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/Pages/Assets/Save.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
         </ToolBar>

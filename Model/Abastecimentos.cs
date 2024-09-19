@@ -1,21 +1,9 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Office.CoverPageProps;
-using Microsoft.Extensions.Options;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.DirectoryServices.ActiveDirectory;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
-namespace FlexiTools.MVVM.Model
+namespace FlexiTools.Model
 {
     internal class Abastecimentos
     {
@@ -114,11 +102,11 @@ namespace FlexiTools.MVVM.Model
                     }
                 });
             }
-            catch(IOException ex)
+            catch (IOException ex)
             {
                 MessageBox.Show($"Ocorreu um erro ao abrir o arquivo: {ex.Message}", "IOException", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Ocorreu um erro inesperado: {ex.Message}", "Exception", MessageBoxButton.OK, MessageBoxImage.Error);
 
@@ -187,10 +175,10 @@ namespace FlexiTools.MVVM.Model
             {
                 MessageBox.Show($"Ocorreu um erro ao salvar o arquivo: {ex.Message}", "IOException", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"Ocorreu um erro inesperado: {ex.Message}", "Error Handle", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-        }        
+        }
     }
 }

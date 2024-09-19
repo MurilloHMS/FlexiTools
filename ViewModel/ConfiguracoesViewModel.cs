@@ -1,10 +1,9 @@
-﻿using FlexiTools.MVVM.Model;
+﻿using FlexiTools.Model;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     public class ConfiguracoesViewModel : ViewModelBase
     {

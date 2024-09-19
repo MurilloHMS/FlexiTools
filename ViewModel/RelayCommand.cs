@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     internal class RelayCommand : ICommand
     {

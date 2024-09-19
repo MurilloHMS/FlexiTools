@@ -1,21 +1,14 @@
-﻿using FlexiTools.MVVM.Model;
+﻿using FlexiTools.Model;
 using Microsoft.Win32;
-using OfficeOpenXml.Drawing.Chart.ChartEx;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     internal class CalcularDadosAbastecimentosViewModel : ViewModelBase
     {
         private ObservableCollection<Abastecimentos> _abastecimentos;
-        
+
         public ObservableCollection<Abastecimentos> Abastecimento
         {
             get => _abastecimentos;
@@ -71,7 +64,7 @@ namespace FlexiTools.MVVM.ViewModel
         {
             Mouse.OverrideCursor = Cursors.Wait;
 
-            try 
+            try
             {
                 var dados = await Abastecimentos.GetAbastecimentosAsync();
                 var funcionarios = await Funcionario.GetFuncionarios("funcionarios.json");
@@ -103,12 +96,12 @@ namespace FlexiTools.MVVM.ViewModel
             {
                 Mouse.OverrideCursor = null;
             }
-            
+
         }
 
         private static string NormalizePlate(string plate)
         {
-            return plate.Replace("-","").ToUpper();
+            return plate.Replace("-", "").ToUpper();
         }
 
         private async Task SaveExcelData()
@@ -125,7 +118,7 @@ namespace FlexiTools.MVVM.ViewModel
 
             await Abastecimentos.SaveDataAsync(ofd.FileName, Abastecimento);
 
-            
+
         }
 
         private bool canSave()

@@ -1,10 +1,9 @@
-﻿using Microsoft.Win32;
-using ClosedXML.Excel;
-using System.Windows;
+﻿using ClosedXML.Excel;
+using Microsoft.Win32;
 using System.IO;
-using System.Collections.Immutable;
+using System.Windows;
 
-namespace FlexiTools.MVVM.Model
+namespace FlexiTools.Model
 {
     public class Cartao
     {

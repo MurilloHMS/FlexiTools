@@ -1,13 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace FlexiTools.MVVM.Model
+namespace FlexiTools.Model
 {
     public class Funcionario
     {
         public string Nome { get; set; }
         public string Departamento { get; set; }
-        public string Hash {  get; set; } 
+        public string Hash { get; set; }
 
         public static async Task<List<Funcionario>> GetFuncionarios(string filePath)
         {

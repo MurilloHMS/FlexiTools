@@ -10,13 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MVVM\Pages\assets\Folder.ico" />
-    <None Remove="MVVM\Pages\assets\Microsoft Excel.ico" />
-    <None Remove="MVVM\Pages\assets\PDF.ico" />
-    <None Remove="MVVM\Pages\assets\Print.ico" />
-    <None Remove="MVVM\Pages\assets\Save.ico" />
     <None Remove="icone-proauto.ico" />
-    <None Remove="MVVM\Pages\Car.ico" />
+    <None Remove="Pages\assets\Folder.ico" />
+    <None Remove="Pages\assets\icone-proauto.ico" />
+    <None Remove="Pages\assets\icone-proauto.png" />
+    <None Remove="Pages\assets\logo-proauto.png" />
+    <None Remove="Pages\assets\Microsoft Excel.ico" />
+    <None Remove="Pages\assets\PDF.ico" />
+    <None Remove="Pages\assets\Print.ico" />
+    <None Remove="Pages\assets\Save.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,12 +33,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="MVVM\Pages\assets\Folder.ico" />
-    <Resource Include="MVVM\Pages\assets\Microsoft Excel.ico" />
-    <Resource Include="MVVM\Pages\assets\PDF.ico" />
-    <Resource Include="MVVM\Pages\assets\Print.ico" />
-    <Resource Include="MVVM\Pages\assets\Save.ico" />
     <Resource Include="icone-proauto.ico" />
+    <Resource Include="Pages\assets\Folder.ico" />
+    <Resource Include="Pages\assets\icone-proauto.ico" />
+    <Resource Include="Pages\assets\icone-proauto.png" />
+    <Resource Include="Pages\assets\logo-proauto.png" />
+    <Resource Include="Pages\assets\Microsoft Excel.ico" />
+    <Resource Include="Pages\assets\PDF.ico" />
+    <Resource Include="Pages\assets\Print.ico" />
+    <Resource Include="Pages\assets\Save.ico" />
   </ItemGroup>
 
 </Project>

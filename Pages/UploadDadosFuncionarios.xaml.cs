@@ -1,10 +1,7 @@
-﻿using FlexiTools.MVVM.Model;
-using Microsoft.Win32;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 
-namespace FlexiTools.MVVM.Pages
+namespace FlexiTools.Pages
 {
     public partial class UploadDadosFuncionarios : Page
     {
@@ -12,6 +9,6 @@ namespace FlexiTools.MVVM.Pages
         {
             InitializeComponent();
         }
-        
+
     }
 }

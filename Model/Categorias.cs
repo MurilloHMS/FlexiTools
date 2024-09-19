@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace FlexiTools.MVVM.Model
+namespace FlexiTools.Model
 {
     public class Categorias
     {

@@ -1,20 +1,17 @@
-﻿using DocumentFormat.OpenXml.Packaging;
-using PdfSharp.Pdf;
+﻿using PdfSharp.Pdf;
 using PdfSharp.Pdf.IO;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
 
-namespace FlexiTools.MVVM.Model
+namespace FlexiTools.Model
 {
     internal class SepararPDF
     {
-        public string Nome {  get; set; }
+        public string Nome { get; set; }
 
         public static List<SepararPDF> GetSeparatePdfByPage(string inputPdfPath)
-        {        
+        {
             try
             {
                 if (!File.Exists(inputPdfPath))
@@ -27,12 +24,12 @@ namespace FlexiTools.MVVM.Model
                 List<SepararPDF> archives = new List<SepararPDF>();
                 for (int i = 0; i < inputDocument.Pages.Count; i++)
                 {
-                    archives.Add(new SepararPDF { Nome = $"Pagina {i}"});
+                    archives.Add(new SepararPDF { Nome = $"Pagina {i}" });
                 }
 
                 return archives ?? new List<SepararPDF>();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return new List<SepararPDF>();
             }

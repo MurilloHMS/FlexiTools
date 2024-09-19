@@ -1,15 +1,12 @@
-﻿using FlexiTools.MVVM.Model;
+﻿using FlexiTools.Model;
 using Microsoft.Win32;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     public class UploadDadosFuncionariosViewModel : ViewModelBase
     {
@@ -65,7 +62,7 @@ namespace FlexiTools.MVVM.ViewModel
                 .GroupBy(c => new { c.Nome })
                 .Select(g => new
                 {
-                    Nome = g.Key.Nome,
+                    g.Key.Nome,
                     Categorias = g
                         .GroupBy(c => c.Categoria)
                         .Select(cg => new

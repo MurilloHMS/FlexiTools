@@ -1,19 +1,14 @@
-﻿using FlexiTools.MVVM.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FlexiTools.Model;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     internal class DadosCartoesViewModel : ViewModelBase
     {
 
         private string _conteudo;
-        
+
         public string Conteudo
         {
             get => _conteudo;
@@ -24,9 +19,9 @@ namespace FlexiTools.MVVM.ViewModel
             }
         }
 
-        public ICommand GerarDadosCommand { get;}
+        public ICommand GerarDadosCommand { get; }
 
-        public DadosCartoesViewModel() 
+        public DadosCartoesViewModel()
         {
             GerarDadosCommand = new RelayCommand(async () => await GerarDadosAsync());
         }

@@ -1,17 +1,9 @@
-﻿using DocumentFormat.OpenXml.Office2010.Drawing;
-using FlexiTools.MVVM.Model;
+﻿using FlexiTools.Model;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Navigation;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     internal class SepararPdfViewModel : ViewModelBase
     {
@@ -29,8 +21,8 @@ namespace FlexiTools.MVVM.ViewModel
             }
         }
 
-        public ICommand OpenFiles {  get;}
-        public ICommand SaveArchives { get;}
+        public ICommand OpenFiles { get; }
+        public ICommand SaveArchives { get; }
 
         public SepararPdfViewModel()
         {
@@ -38,16 +30,16 @@ namespace FlexiTools.MVVM.ViewModel
             SaveArchives = new RelayCommand(async () => await SaveFiles(), CanSave);
         }
 
-        
+
 
         private async Task LoadDataAsync()
         {
-            OpenFileDialog ofd = new OpenFileDialog() 
+            OpenFileDialog ofd = new OpenFileDialog()
             {
                 Filter = "Arquivos PDF|*.pdf"
             };
 
-            if(ofd.ShowDialog() != true) { return; }
+            if (ofd.ShowDialog() != true) { return; }
             _pdfFileName = ofd.FileName;
             Pages = new ObservableCollection<SepararPDF>(SepararPDF.GetSeparatePdfByPage(_pdfFileName));
         }

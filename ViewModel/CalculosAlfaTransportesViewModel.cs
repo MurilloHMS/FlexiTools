@@ -1,5 +1,4 @@
-﻿
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.Globalization;
 using System.Text;
 using System.Windows;
@@ -7,7 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Linq;
 
-namespace FlexiTools.MVVM.ViewModel
+namespace FlexiTools.ViewModel
 {
     public class CalculosAlfaTransportesViewModel : ViewModelBase
     {
