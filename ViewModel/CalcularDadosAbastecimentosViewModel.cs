@@ -87,6 +87,8 @@ namespace FlexiTools.ViewModel
                     {
                         abs.NomeDoMotorista = funcionario.Nome;
                         abs.SetorDoMotorista = funcionario.Departamento;
+                        abs.Gerente = funcionario.Gerente ?? null;
+                        abs.Email = funcionario.Email ?? null;
                     }
                     abs.Validacao = abs.MediaKm < abs.ConsumoUrbanoGasolina ? "Consumo Médio menor que o informado pelo Fabricante" : "";
                     Abastecimento.Add(abs);

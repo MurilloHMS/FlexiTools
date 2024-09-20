@@ -27,6 +27,8 @@ namespace FlexiTools.Model
         public double? ConsumoRodoviárioGasolina { get; set; }
         public string? NomeDoMotorista { get; set; }
         public string? SetorDoMotorista { get; set; }
+        public string? Gerente {  get; set; }
+        public string? Email { get; set; }
         public string? LatitudeElongitudeDispositivo { get; set; }
         public string? latitudeElogitudePosto { get; set; }
         public decimal? HodometroAtual { get; set; }
@@ -163,6 +165,8 @@ namespace FlexiTools.Model
                             worksheet.Cell(newLine, 31).Value = row.VlrTotalProdutos;
                             worksheet.Cell(newLine, 32).Value = row.VlrTotalValidado;
                             worksheet.Cell(newLine, 33).Value = $"{row.Validacao}";
+                            worksheet.Cell(newLine, 34).Value = row.Gerente;
+                            worksheet.Cell(newLine, 35).Value = row.Email;
                             newLine++;
                         }
 

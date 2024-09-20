@@ -50,6 +50,8 @@
                 <DataGridTextColumn Header="Funcionários" Binding="{Binding Nome, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Departamento" Binding="{Binding Departamento, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                 <DataGridTextColumn Header="Categorias" Binding="{Binding Hash, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="Gerente" Binding="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                <DataGridTextColumn Header="E-Mail" Binding="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
 
             </DataGrid.Columns>
         </DataGrid>

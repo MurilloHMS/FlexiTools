@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="icone-proauto.ico" />
+    <None Remove="icone-proauto.png" />
     <None Remove="Pages\assets\Add.ico" />
     <None Remove="Pages\assets\Cancel.ico" />
     <None Remove="Pages\assets\Card Exchange.ico" />
@@ -35,10 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="icone-proauto.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="ClosedXML" Version="0.102.3" />
     <PackageReference Include="EPPlus" Version="7.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -47,6 +44,7 @@
 
   <ItemGroup>
     <Resource Include="icone-proauto.ico" />
+    <Resource Include="icone-proauto.png" />
     <Resource Include="Pages\assets\Add.ico" />
     <Resource Include="Pages\assets\Cancel.ico" />
     <Resource Include="Pages\assets\Card Exchange.ico" />

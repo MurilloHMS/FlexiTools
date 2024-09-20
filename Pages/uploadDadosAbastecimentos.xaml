@@ -28,7 +28,7 @@
                 Style="{DynamicResource ToolBarCustomButtom}"
                 ToolTip="Salvar Dados">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/MVVM/Pages/assets/Save.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/Pages/assets/Save.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
         </ToolBar>
