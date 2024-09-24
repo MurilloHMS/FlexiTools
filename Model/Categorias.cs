@@ -5,7 +5,7 @@ namespace FlexiTools.Model
 {
     public class Categorias
     {
-        public string Nome { get; set; }
+        public string? Nome { get; set; }
 
         public static async Task<List<Categorias>> GetCategoriasAsync(string filePath)
         {

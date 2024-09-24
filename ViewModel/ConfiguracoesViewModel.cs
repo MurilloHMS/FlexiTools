@@ -36,7 +36,9 @@ namespace FlexiTools.ViewModel
 
         public ICommand SaveComamnd { get; }
 
+#pragma warning disable CS8618 // O campo não anulável precisa conter um valor não nulo ao sair do construtor. Considere adicionar o modificador "obrigatório" ou declarar como anulável.
         public ConfiguracoesViewModel()
+#pragma warning restore CS8618 // O campo não anulável precisa conter um valor não nulo ao sair do construtor. Considere adicionar o modificador "obrigatório" ou declarar como anulável.
         {
             SaveComamnd = new RelayCommand(async () => await SaveDataAsync());
             LoadDataAsync();

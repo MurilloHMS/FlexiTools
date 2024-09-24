@@ -81,48 +81,46 @@ namespace FlexiTools.ViewModel
 
                 await Task.Run(() =>
                 {
-                    using (XLWorkbook workbook = new XLWorkbook(filePath))
+                    using XLWorkbook workbook = new(filePath);
+                    var sheet = workbook.Worksheet(1);
+
+                    string currentFuncionario = string.Empty;
+                    bool coleta = false;
+
+                    foreach (var row in sheet.RowsUsed())
                     {
-                        var sheet = workbook.Worksheet(1);
+                        string rowData = string.Join("\t", row.CellsUsed().Select(cell => cell.GetValue<string>()));
 
-                        string currentFuncionario = null;
-                        bool coleta = false;
+                        if (string.IsNullOrWhiteSpace(rowData)) continue;
 
-                        foreach (var row in sheet.RowsUsed())
+                        if (funcionarios.Any(identifier => rowData.Contains(identifier.Nome)))
                         {
-                            string rowData = string.Join("\t", row.CellsUsed().Select(cell => cell.GetValue<string>()));
-
-                            if (string.IsNullOrWhiteSpace(rowData)) continue;
-
-                            if (funcionarios.Any(identifier => rowData.Contains(identifier.Nome)))
+                            currentFuncionario = rowData;
+                            if (!dadosFuncionarios.ContainsKey(currentFuncionario))
                             {
-                                currentFuncionario = rowData;
-                                if (!dadosFuncionarios.ContainsKey(currentFuncionario))
+                                dadosFuncionarios[currentFuncionario] = new List<(DateTime Data, string Descricao, decimal Valor)>();
+                            }
+                        }
+
+                        if (rowData.Contains("data"))
+                        {
+                            coleta = true;
+                        }
+                        else if (rowData.Contains("Total de lançamentos nacionais") || rowData.Contains("Lançamentos nacionais"))
+                        {
+                            coleta = false;
+                        }
+
+                        if (coleta && currentFuncionario != null)
+                        {
+                            var columns = rowData.Split('\t');
+                            if (columns.Length >= 3)
+                            {
+                                if (DateTime.TryParse(columns[0], out DateTime data))
                                 {
-                                    dadosFuncionarios[currentFuncionario] = new List<(DateTime Data, string Descricao, decimal Valor)>();
-                                }
-                            }
-
-                            if (rowData.Contains("data"))
-                            {
-                                coleta = true;
-                            }
-                            else if (rowData.Contains("Total de lançamentos nacionais") || rowData.Contains("Lançamentos nacionais"))
-                            {
-                                coleta = false;
-                            }
-
-                            if (coleta && currentFuncionario != null)
-                            {
-                                var columns = rowData.Split('\t');
-                                if (columns.Length >= 3)
-                                {
-                                    if (DateTime.TryParse(columns[0], out DateTime data))
+                                    if (decimal.TryParse(columns[2], out decimal valor))
                                     {
-                                        if (decimal.TryParse(columns[2], out decimal valor))
-                                        {
-                                            dadosFuncionarios[currentFuncionario].Add((data, columns[1], valor));
-                                        }
+                                        dadosFuncionarios[currentFuncionario].Add((data, columns[1], valor));
                                     }
                                 }
                             }

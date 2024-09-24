@@ -10,10 +10,10 @@ namespace FlexiTools.ViewModel
 {
     public class CalculosAlfaTransportesViewModel : ViewModelBase
     {
-        private string _resultadoDosCalculos;
-        private string _textToPrint;
+        private string? _resultadoDosCalculos;
+        private string? _textToPrint;
 
-        public string ResultadoDosCalculos
+        public string? ResultadoDosCalculos
         {
             get => _resultadoDosCalculos;
             set
@@ -36,7 +36,7 @@ namespace FlexiTools.ViewModel
         {
             try
             {
-                OpenFileDialog ofd = new OpenFileDialog()
+                OpenFileDialog ofd = new()
                 {
                     Filter = "Arquivos XML (*.xml)|*.xml|Todos os Arquivos (*.*)|*.*",
                     Multiselect = true,
@@ -49,7 +49,7 @@ namespace FlexiTools.ViewModel
                     return;
                 }
 
-                StringBuilder resultado = new StringBuilder();
+                StringBuilder resultado = new();
                 decimal totalValorPrest = 0m;
 
                 for (int i = 0; i < ofd.FileNames.Length; i++)
@@ -77,7 +77,7 @@ namespace FlexiTools.ViewModel
             }
         }
 
-        private (string, decimal) ProcessarArquivoXML(string filePath)
+        private static (string, decimal) ProcessarArquivoXML(string filePath)
         {
             try
             {
@@ -112,9 +112,9 @@ namespace FlexiTools.ViewModel
                 return;
             }
 
-            PrintDialog printDialog = new PrintDialog();
+            PrintDialog printDialog = new();
 
-            TextBlock textBlock = new TextBlock
+            TextBlock textBlock = new()
             {
                 Text = _textToPrint,
                 TextWrapping = TextWrapping.Wrap,

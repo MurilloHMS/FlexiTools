@@ -43,7 +43,5 @@ namespace FlexiTools.Model
         public decimal? VlrTotalProdutos { get; set; }
         public decimal? VlrTotalValidado { get; set; }
         public string? Validacao { get; set; }
-
-        
     }
 }
