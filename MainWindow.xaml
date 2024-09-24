@@ -4,34 +4,184 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FlexiTools"
+        xmlns:viewModel="clr-namespace:FlexiTools.ViewModel"
         mc:Ignorable="d"
         Title="FlexiTools" 
         SnapsToDevicePixels="True"
         Height="700" Width="1100" Icon="/icone-proauto.ico"
-        WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowStartupLocation="CenterScreen">
+    <Window.DataContext>
+        <viewModel:SideMenuViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <!-- Font and Style Definitions -->
+        <FontFamily x:Key="UbuntuFont">Ubuntu</FontFamily>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style x:Key="ExpanderToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Expander">
+            <Setter Property="FontFamily" Value="{StaticResource UbuntuFont}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="Transparent"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Width" Value="185"/>
+            <Setter Property="Header">
+                <Setter.Value>
+                    <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Header}" 
+                           Foreground="{Binding RelativeSource={RelativeSource AncestorType=Expander}, Path=Foreground}" 
+                           FontSize="{Binding RelativeSource={RelativeSource AncestorType=Expander}, Path=FontSize}"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Expander">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <StackPanel>
+                                <ToggleButton x:Name="ExpandCollapseButton"
+                                          Style="{StaticResource ExpanderToggleButtonStyle}"
+                                          IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <ToggleButton.Content>
+                                        <TextBlock Text="{Binding Path=Header, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </ToggleButton.Content>
+                                </ToggleButton>
+                                <ContentPresenter ContentSource="Content"
+                                              Visibility="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource UbuntuFont}"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Padding="{TemplateBinding Padding}"
+                            Cursor="Hand">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" 
+                                          Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Lavender"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
 
+        <Storyboard x:Key="OpenMenuStoryboard">
+            <DoubleAnimation 
+            Storyboard.TargetName="MenuContainer"
+            Storyboard.TargetProperty="Width"
+            From="30" To="200" Duration="0:0:0.3" />
+            <DoubleAnimation 
+            Storyboard.TargetName="MenuContainer"
+            Storyboard.TargetProperty="Opacity"
+            From="0" To="1" Duration="0:0:0.3" />
+        </Storyboard>
+
+        <Storyboard x:Key="CloseMenuStoryboard">
+            <DoubleAnimation 
+            Storyboard.TargetName="MenuContainer"
+            Storyboard.TargetProperty="Width"
+            From="200" To="30" Duration="0:0:0.3" />
+            <DoubleAnimation 
+            Storyboard.TargetName="MenuContainer"
+            Storyboard.TargetProperty="Opacity"
+            From="1" To="0" Duration="0:0:0.3" />
+        </Storyboard>
+
+    </Window.Resources>
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="61*" />
-            <ColumnDefinition Width="14*"/>
-        </Grid.ColumnDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Path Stretch="Uniform" Margin="12,10,12,0" VerticalAlignment="Top"  Fill="#2a84f1" Height="25" Width="25" Data="m 0,0 -9.885,-1.456 0,-7.155 L 0,-8.533 0,0 z m -17.998,-2.548 0.007,-6.117 7.188,0.054 0,7.03 -7.195,-0.967 z m 0.005,-6.843 10e-4,-6.12 7.189,-0.985 0,7.105 -7.19,0 z m 8.108,-0.114 0,-7.141 L 0,-18 l 0.002,8.495 -9.887,0 z"/>
+            <DockPanel Grid.Column="0" Background="#ffffff">
+                <Border x:Name="MenuContainer" Width="0" Opacity="0" Background="Transparent" HorizontalAlignment="Left">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10" Height="75" Width="75">
+                            <Image Source="pack://application:,,,/Pages/Assets/icone-proauto.png"/>
+                        </StackPanel>
+                        <ListBox ItemsSource="{Binding SideMenus}" Width="200">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Expander Header="{Binding Name}" IsExpanded="{Binding IsExpanded, Mode=TwoWay}">
+                                        <StackPanel>
+                                            <ItemsControl ItemsSource="{Binding SubMenus}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Button Content="{Binding Name}"
+                                                                Command="{Binding DataContext.ButtonCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding Name}" />
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Expander>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+            </DockPanel>
 
-        <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar" Margin="0,50,0,50"  BorderThickness="0">
-
-            <local:NavButton Navlink="/Pages/DadosCartoes.xaml" ToolTip="Separar dados Por Funcionário" Margin="3" Padding="6" Icon="M9.29289 1.29289C9.48043 1.10536 9.73478 1 10 1H18C19.6569 1 21 2.34315 21 4V9C21 9.55228 20.5523 10 20 10C19.4477 10 19 9.55228 19 9V4C19 3.44772 18.5523 3 18 3H11V8C11 8.55228 10.5523 9 10 9H5V20C5 20.5523 5.44772 21 6 21H7C7.55228 21 8 21.4477 8 22C8 22.5523 7.55228 23 7 23H6C4.34315 23 3 21.6569 3 20V8C3 7.73478 3.10536 7.48043 3.29289 7.29289L9.29289 1.29289ZM6.41421 7H9V4.41421L6.41421 7ZM19 12C19.5523 12 20 12.4477 20 13V19H23C23.5523 19 24 19.4477 24 20C24 20.5523 23.5523 21 23 21H19C18.4477 21 18 20.5523 18 20V13C18 12.4477 18.4477 12 19 12ZM11.8137 12.4188C11.4927 11.9693 10.8682 11.8653 10.4188 12.1863C9.96935 12.5073 9.86526 13.1318 10.1863 13.5812L12.2711 16.5L10.1863 19.4188C9.86526 19.8682 9.96935 20.4927 10.4188 20.8137C10.8682 21.1347 11.4927 21.0307 11.8137 20.5812L13.5 18.2205L15.1863 20.5812C15.5073 21.0307 16.1318 21.1347 16.5812 20.8137C17.0307 20.4927 17.1347 19.8682 16.8137 19.4188L14.7289 16.5L16.8137 13.5812C17.1347 13.1318 17.0307 12.5073 16.5812 12.1863C16.1318 11.8653 15.5073 11.9693 15.1863 12.4188L13.5 14.7795L11.8137 12.4188Z"/>
-            <local:NavButton Navlink="/Pages/UploadDadosFuncionarios.xaml" ToolTip="Upload Planilhas Dos Funcionários" Margin="3" Padding="6" Icon="m1764.98 1402.824 155.362 155.362L1558.527 1920H368.814L7 1558.186l155.361-155.362 297.429 297.428h1007.762l297.428-297.428ZM965.901 0l517.176 517.176-155.361 155.361-251.941-251.94v1002.708H856.028V420.597l-251.941 251.94-155.362-155.361L965.901 0Z"/>
-            <local:NavButton Navlink="/Pages/CalculosAlfaTransportes.xaml"  ToolTip="Calcular Notas Alfa Transportes" Margin="3" Padding="6" Icon="M24,20c0,1.654-1.346,3-3,3v1h-2v-1c-1.654,0-3-1.346-3-3h2c0,.551,.448,1,1,1h2c.552,0,1-.449,1-1,0-.378-.271-.698-.644-.76l-3.041-.507c-1.342-.223-2.315-1.373-2.315-2.733,0-1.654,1.346-3,3-3v-1h2v1c1.654,0,3,1.346,3,3h-2c0-.551-.448-1-1-1h-2c-.552,0-1,.449-1,1,0,.378,.271,.698,.644,.76l3.041,.507c1.342,.223,2.315,1.373,2.315,2.733Zm-9.899-5c.152-.743,.482-1.416,.924-2H5v7H14v-2H7v-3h7.101ZM5,11h5v-2H5v2Zm5-6H5v2h5v-2Zm6.031,19H1V3C1,1.346,2.346,0,4,0H13.414l7.586,7.586v2.414h-2v-1h-7V2H4c-.551,0-1,.449-1,1V22H14.424c.352,.801,.913,1.483,1.607,2ZM14,7h3.586l-3.586-3.586v3.586Z"/>
-            <local:NavButton Navlink="/Pages/SepararPDF.xaml"  ToolTip="Separar PDF" Margin="3" Padding="6" Icon="M10 1C9.73478 1 9.48043 1.10536 9.29289 1.29289L3.29289 7.29289C3.10536 7.48043 3 7.73478 3 8V20C3 21.6569 4.34315 23 6 23H7C7.55228 23 8 22.5523 8 22C8 21.4477 7.55228 21 7 21H6C5.44772 21 5 20.5523 5 20V9H10C10.5523 9 11 8.55228 11 8V3H18C18.5523 3 19 3.44772 19 4V11C19 11.5523 19.4477 12 20 12C20.5523 12 21 11.5523 21 11V4C21 2.34315 19.6569 1 18 1H10ZM9 7H6.41421L9 4.41421V7ZM10.3078 23.5628C10.4657 23.7575 10.6952 23.9172 10.9846 23.9762C11.2556 24.0316 11.4923 23.981 11.6563 23.9212C11.9581 23.8111 12.1956 23.6035 12.3505 23.4506C12.5941 23.2105 12.8491 22.8848 13.1029 22.5169C14.2122 22.1342 15.7711 21.782 17.287 21.5602C18.1297 21.4368 18.9165 21.3603 19.5789 21.3343C19.8413 21.6432 20.08 21.9094 20.2788 22.1105C20.4032 22.2363 20.5415 22.3671 20.6768 22.4671C20.7378 22.5122 20.8519 22.592 20.999 22.6493C21.0755 22.6791 21.5781 22.871 22.0424 22.4969C22.3156 22.2768 22.5685 22.0304 22.7444 21.7525C22.9212 21.4733 23.0879 21.0471 22.9491 20.5625C22.8131 20.0881 22.4588 19.8221 22.198 19.6848C21.9319 19.5448 21.6329 19.4668 21.3586 19.4187C21.11 19.3751 20.8288 19.3478 20.5233 19.3344C19.9042 18.5615 19.1805 17.6002 18.493 16.6198C17.89 15.76 17.3278 14.904 16.891 14.1587C16.9359 13.9664 16.9734 13.7816 17.0025 13.606C17.0523 13.3052 17.0824 13.004 17.0758 12.7211C17.0695 12.4497 17.0284 12.1229 16.88 11.8177C16.7154 11.4795 16.416 11.1716 15.9682 11.051C15.5664 10.9428 15.1833 11.0239 14.8894 11.1326C14.4359 11.3004 14.1873 11.6726 14.1014 12.0361C14.0288 12.3437 14.0681 12.6407 14.1136 12.8529C14.2076 13.2915 14.4269 13.7956 14.6795 14.2893C14.702 14.3332 14.7251 14.3777 14.7487 14.4225C14.5103 15.2072 14.1578 16.1328 13.7392 17.0899C13.1256 18.4929 12.4055 19.8836 11.7853 20.878C11.3619 21.0554 10.9712 21.2584 10.6746 21.4916C10.4726 21.6505 10.2019 21.909 10.0724 22.2868C9.9132 22.7514 10.0261 23.2154 10.3078 23.5628ZM11.8757 23.0947C11.8755 23.0946 11.8775 23.0923 11.8824 23.0877C11.8783 23.0924 11.8759 23.0947 11.8757 23.0947ZM16.9974 19.5812C16.1835 19.7003 15.3445 19.8566 14.5498 20.0392C14.9041 19.3523 15.2529 18.6201 15.5716 17.8914C15.7526 17.4775 15.9269 17.0581 16.0885 16.6431C16.336 17.0175 16.5942 17.3956 16.8555 17.7681C17.2581 18.3421 17.6734 18.911 18.0759 19.4437C17.7186 19.4822 17.3567 19.5287 16.9974 19.5812ZM16.0609 12.3842C16.0608 12.3829 16.0607 12.3823 16.0606 12.3823C16.0606 12.3822 16.0607 12.3838 16.061 12.3872C16.061 12.386 16.0609 12.385 16.0609 12.3842Z"/>
-            <local:NavButton Navlink="/Pages/uploadDadosAbastecimentos.xaml"  ToolTip="Separar Dados Motoristas" Margin="3" Padding="6" Icon="M142.342,112L136,112C135.47,112 134.961,111.789 134.586,111.414C134.211,111.039 134,110.53 134,110C134,104.254 134,87.745 134,82C134,81.47 134.211,80.961 134.586,80.586C134.961,80.211 135.47,80 136,80C142.028,80 159.972,80 166,80C167.105,80 168,80.895 168,82L168,86L176.301,86C178.058,86 179.685,86.922 180.589,88.428C182.253,91.201 184.857,95.54 185.715,96.971C185.901,97.282 186,97.638 186,98C186,99.959 186,106.621 186,110C186,110.53 185.789,111.039 185.414,111.414C185.039,111.789 184.53,112 184,112L177.658,112C176.834,114.329 174.61,116 172,116C169.39,116 167.166,114.329 166.342,112L153.658,112C152.834,114.329 150.61,116 148,116C145.39,116 143.166,114.329 142.342,112ZM148,108C149.104,108 150,108.896 150,110C150,111.104 149.104,112 148,112C146.896,112 146,111.104 146,110C146,108.896 146.896,108 148,108ZM172,108C173.104,108 174,108.896 174,110C174,111.104 173.104,112 172,112C170.896,112 170,111.104 170,110C170,108.896 170.896,108 172,108ZM164,84L138,84L138,108L142.342,108C143.166,105.671 145.39,104 148,104C150.61,104 152.834,105.671 153.658,108L166.342,108C167.166,105.671 169.39,104 172,104C174.61,104 176.834,105.671 177.658,108L182,108L182,100L174,100C172.895,100 172,99.105 172,98C172,96.895 172.895,96 174,96L180.468,96L177.45,90.971C177.089,90.369 176.438,90 175.735,90L168,90L168,98C168,99.105 167.105,100 166,100C164.895,100 164,99.105 164,98L164,84Z"/>
-            <local:NavButton Navlink="/Pages/Configuracoes.xaml" VerticalAlignment="Bottom" ToolTip="Configurações" Margin="3" Padding="6" Icon="M34.283,384c17.646,30.626,56.779,41.148,87.405,23.502c0.021-0.012,0.041-0.024,0.062-0.036l9.493-5.483   c17.92,15.332,38.518,27.222,60.757,35.072V448c0,35.346,28.654,64,64,64s64-28.654,64-64v-10.944   c22.242-7.863,42.841-19.767,60.757-35.115l9.536,5.504c30.633,17.673,69.794,7.167,87.467-23.467   c17.673-30.633,7.167-69.794-23.467-87.467l0,0l-9.472-5.461c4.264-23.201,4.264-46.985,0-70.187l9.472-5.461   c30.633-17.673,41.14-56.833,23.467-87.467c-17.673-30.633-56.833-41.14-87.467-23.467l-9.493,5.483   C362.862,94.638,342.25,82.77,320,74.944V64c0-35.346-28.654-64-64-64s-64,28.654-64,64v10.944   c-22.242,7.863-42.841,19.767-60.757,35.115l-9.536-5.525C91.073,86.86,51.913,97.367,34.24,128s-7.167,69.794,23.467,87.467l0,0   l9.472,5.461c-4.264,23.201-4.264,46.985,0,70.187l-9.472,5.461C27.158,314.296,16.686,353.38,34.283,384z M256,170.667   c47.128,0,85.333,38.205,85.333,85.333S303.128,341.333,256,341.333S170.667,303.128,170.667,256S208.872,170.667,256,170.667z"/>
-          
-        </ListBox>
 
 
-        <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#e9ecef" Grid.ColumnSpan="2"/>
+            <Frame Grid.Column="1" x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#e9ecef" Grid.ColumnSpan="3"/>
+            <Button Content="" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="24" Click="ToggleMenu_Click" Cursor="Hand" Grid.ColumnSpan="2" Margin="5,4,0,0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pack://application:,,,/Pages/Assets/Menu.ico"/>
+                </Button.Background>
+            </Button>
+        </Grid>
     </Grid>
 </Window>

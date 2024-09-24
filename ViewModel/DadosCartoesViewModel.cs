@@ -29,7 +29,7 @@ namespace FlexiTools.ViewModel
 
         public DadosCartoesViewModel()
         {
-            GerarDadosCommand = new RelayCommand(async () => await GerarDadosAsync());
+            GerarDadosCommand = new RelayCommand(async _ => await GerarDadosAsync());
         }
 
         private async Task GerarDadosAsync()

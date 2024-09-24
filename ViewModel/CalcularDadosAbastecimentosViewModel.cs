@@ -31,8 +31,8 @@ namespace FlexiTools.ViewModel
         {
 
             Abastecimento = new ObservableCollection<Abastecimentos>();
-            AbrirArquivo = new RelayCommand(async () => await ImportExcelData());
-            SalvarArquivo = new RelayCommand(async () => await SaveExcelData(), CanSave);
+            AbrirArquivo = new RelayCommand(async _ => await ImportExcelData());
+            SalvarArquivo = new RelayCommand(async _ => await SaveExcelData(), _ => CanSave());
 
             _vehicles = new Dictionary<string, Vehicle>
             {

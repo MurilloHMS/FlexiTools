@@ -47,8 +47,8 @@ namespace FlexiTools.ViewModel
         public UploadDadosFuncionariosViewModel()
         {
             Cartoes = new ObservableCollection<Cartao>();
-            ImportExcelComamnd = new RelayCommand(async () => await ImportExcelData());
-            SaveCommand = new RelayCommand(async () => await SaveData(), CanSaveData);
+            ImportExcelComamnd = new RelayCommand(async _ => await ImportExcelData());
+            SaveCommand = new RelayCommand(async _ => await SaveData(), _ => CanSaveData());
         }
 
         private async Task ImportExcelData()

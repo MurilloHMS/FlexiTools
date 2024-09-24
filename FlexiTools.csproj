@@ -26,6 +26,7 @@
     <None Remove="Pages\assets\icone-proauto.ico" />
     <None Remove="Pages\assets\icone-proauto.png" />
     <None Remove="Pages\assets\logo-proauto.png" />
+    <None Remove="Pages\assets\Menu.ico" />
     <None Remove="Pages\assets\Microsoft Excel 2019.ico" />
     <None Remove="Pages\assets\Microsoft Excel.ico" />
     <None Remove="Pages\assets\Minus.ico" />
@@ -59,6 +60,7 @@
     <Resource Include="Pages\assets\icone-proauto.ico" />
     <Resource Include="Pages\assets\icone-proauto.png" />
     <Resource Include="Pages\assets\logo-proauto.png" />
+    <Resource Include="Pages\assets\Menu.ico" />
     <Resource Include="Pages\assets\Microsoft Excel 2019.ico" />
     <Resource Include="Pages\assets\Microsoft Excel.ico" />
     <Resource Include="Pages\assets\Minus.ico" />

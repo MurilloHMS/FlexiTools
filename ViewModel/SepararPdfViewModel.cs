@@ -30,8 +30,8 @@ namespace FlexiTools.ViewModel
 
         public SepararPdfViewModel()
         {
-            OpenFiles = new RelayCommand(async () => await LoadDataAsync());
-            SaveArchives = new RelayCommand(async () => await SaveFiles(), CanSave);
+            OpenFiles = new RelayCommand(async _ => await LoadDataAsync());
+            SaveArchives = new RelayCommand(async _ => await SaveFiles(), _ => CanSave());
         }
 
 

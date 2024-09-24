@@ -28,8 +28,8 @@ namespace FlexiTools.ViewModel
 
         public CalculosAlfaTransportesViewModel()
         {
-            AbrirCommand = new RelayCommand(ExecuteAbrirCommand);
-            ImprimirCommand = new RelayCommand(ExecuteImprimirCommand, CanPrint);
+            AbrirCommand = new RelayCommand(async _ => ExecuteAbrirCommand());
+            ImprimirCommand = new RelayCommand(async _ => ExecuteImprimirCommand(), _ => CanPrint());
         }
 
         private void ExecuteAbrirCommand()
