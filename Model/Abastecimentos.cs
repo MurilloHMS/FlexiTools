@@ -8,6 +8,7 @@ namespace FlexiTools.Model
     internal class Abastecimentos
     {
         public string? DataAbastecimento { get; set; }
+        public string? Data { get; set; }
         public string? StatusEmissaoNFe { get; set; }
         public string? CNPJ { get; set; }
         public string? RazaoSocial { get; set; }
@@ -133,40 +134,41 @@ namespace FlexiTools.Model
                         foreach (var row in data)
                         {
                             worksheet.Cell(newLine, 1).Value = row.DataAbastecimento;
-                            worksheet.Cell(newLine, 2).Value = row.StatusEmissaoNFe;
-                            worksheet.Cell(newLine, 3).Value = row.CNPJ;
-                            worksheet.Cell(newLine, 4).Value = row.RazaoSocial;
-                            worksheet.Cell(newLine, 5).Value = row.NomeFantasia;
-                            worksheet.Cell(newLine, 6).Value = row.CNPJEstabelecimento;
-                            worksheet.Cell(newLine, 7).Value = row.RazaoSocialEstabelecimento;
-                            worksheet.Cell(newLine, 8).Value = row.NomeFantasiaEstabelecimetno;
-                            worksheet.Cell(newLine, 9).Value = row.EnderecoEstabelecimento;
-                            worksheet.Cell(newLine, 10).Value = row.CidadeEstabelecimento;
-                            worksheet.Cell(newLine, 11).Value = row.UfEstabelecimento;
-                            worksheet.Cell(newLine, 12).Value = row.PlacaDoVeiculo;
-                            worksheet.Cell(newLine, 13).Value = row.ModeloDoVeiculo;
-                            worksheet.Cell(newLine, 14).Value = row.FabricanteVeiculo;
-                            worksheet.Cell(newLine, 15).Value = row.ConsumoUrbanoAlcool;
-                            worksheet.Cell(newLine, 16).Value = row.ConsumoRodoviárioAlcool;
-                            worksheet.Cell(newLine, 17).Value = row.ConsumoUrbanoGasolina;
-                            worksheet.Cell(newLine, 18).Value = row.ConsumoRodoviárioGasolina;
-                            worksheet.Cell(newLine, 19).Value = row.NomeDoMotorista;
-                            worksheet.Cell(newLine, 20).Value = row.SetorDoMotorista;
-                            worksheet.Cell(newLine, 21).Value = row.LatitudeElongitudeDispositivo;
-                            worksheet.Cell(newLine, 22).Value = row.latitudeElogitudePosto;
-                            worksheet.Cell(newLine, 23).Value = row.HodometroAtual;
-                            worksheet.Cell(newLine, 24).Value = row.HodometroAnterior;
-                            worksheet.Cell(newLine, 25).Value = row.DiferencaHodometro;
-                            worksheet.Cell(newLine, 26).Value = row.MediaKm;
-                            worksheet.Cell(newLine, 27).Value = row.MeioDePagamento;
-                            worksheet.Cell(newLine, 28).Value = row.Produto;
-                            worksheet.Cell(newLine, 29).Value = row.Litros;
-                            worksheet.Cell(newLine, 30).Value = row.VlrLitro;
-                            worksheet.Cell(newLine, 31).Value = row.VlrTotalProdutos;
-                            worksheet.Cell(newLine, 32).Value = row.VlrTotalValidado;
-                            worksheet.Cell(newLine, 33).Value = $"{row.Validacao}";
-                            worksheet.Cell(newLine, 34).Value = row.Gerente;
-                            worksheet.Cell(newLine, 35).Value = row.Email;
+                            worksheet.Cell(newLine, 2).Value = row.Data;
+                            worksheet.Cell(newLine, 3).Value = row.StatusEmissaoNFe;
+                            worksheet.Cell(newLine, 4).Value = row.CNPJ;
+                            worksheet.Cell(newLine, 5).Value = row.RazaoSocial;
+                            worksheet.Cell(newLine, 6).Value = row.NomeFantasia;
+                            worksheet.Cell(newLine, 7).Value = row.CNPJEstabelecimento;
+                            worksheet.Cell(newLine, 8).Value = row.RazaoSocialEstabelecimento;
+                            worksheet.Cell(newLine, 9).Value = row.NomeFantasiaEstabelecimetno;
+                            worksheet.Cell(newLine, 10).Value = row.EnderecoEstabelecimento;
+                            worksheet.Cell(newLine, 11).Value = row.CidadeEstabelecimento;
+                            worksheet.Cell(newLine, 12).Value = row.UfEstabelecimento;
+                            worksheet.Cell(newLine, 13).Value = row.PlacaDoVeiculo;
+                            worksheet.Cell(newLine, 14).Value = row.ModeloDoVeiculo;
+                            worksheet.Cell(newLine, 15).Value = row.FabricanteVeiculo;
+                            worksheet.Cell(newLine, 16).Value = row.ConsumoUrbanoAlcool;
+                            worksheet.Cell(newLine, 17).Value = row.ConsumoRodoviárioAlcool;
+                            worksheet.Cell(newLine, 18).Value = row.ConsumoUrbanoGasolina;
+                            worksheet.Cell(newLine, 19).Value = row.ConsumoRodoviárioGasolina;
+                            worksheet.Cell(newLine, 20).Value = row.NomeDoMotorista;
+                            worksheet.Cell(newLine, 21).Value = row.SetorDoMotorista;
+                            worksheet.Cell(newLine, 22).Value = row.LatitudeElongitudeDispositivo;
+                            worksheet.Cell(newLine, 23).Value = row.latitudeElogitudePosto;
+                            worksheet.Cell(newLine, 24).Value = row.HodometroAtual;
+                            worksheet.Cell(newLine, 25).Value = row.HodometroAnterior;
+                            worksheet.Cell(newLine, 26).Value = row.DiferencaHodometro;
+                            worksheet.Cell(newLine, 27).Value = row.MediaKm;
+                            worksheet.Cell(newLine, 28).Value = row.MeioDePagamento;
+                            worksheet.Cell(newLine, 29).Value = row.Produto;
+                            worksheet.Cell(newLine, 30).Value = row.Litros;
+                            worksheet.Cell(newLine, 31).Value = row.VlrLitro;
+                            worksheet.Cell(newLine, 32).Value = row.VlrTotalProdutos;
+                            worksheet.Cell(newLine, 33).Value = row.VlrTotalValidado;
+                            worksheet.Cell(newLine, 34).Value = $"{row.Validacao}";
+                            worksheet.Cell(newLine, 35).Value = row.Gerente;
+                            worksheet.Cell(newLine, 36).Value = row.Email;
                             newLine++;
                         }
 

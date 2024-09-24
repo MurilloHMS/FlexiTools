@@ -70,6 +70,7 @@ namespace FlexiTools.ViewModel
                 var funcionarios = await Funcionario.GetFuncionarios("funcionarios.json");
                 Abastecimento.Clear();
 
+                string[] mes = new string[] {"Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"};
 
                 foreach (var abs in dados)
                 {
@@ -91,6 +92,8 @@ namespace FlexiTools.ViewModel
                         abs.Email = funcionario.Email ?? null;
                     }
                     abs.Validacao = abs.MediaKm < abs.ConsumoUrbanoGasolina ? "Consumo Médio menor que o informado pelo Fabricante" : "";
+                    abs.Data = DateTime.TryParse(abs.DataAbastecimento, out var datas) ? mes[datas.Month -1] : null;
+
                     Abastecimento.Add(abs);
                 }
             }

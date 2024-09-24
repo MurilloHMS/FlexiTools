@@ -11,36 +11,97 @@
     <Page.DataContext>
         <viewModel:CalcularDadosAbastecimentosViewModel/>
     </Page.DataContext>
+    <Page.Resources>
+        <Style TargetType="Expander">
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="black"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="LightGray"/>
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+        <Style x:Key="ExpanderToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}"
+                         BorderBrush="{TemplateBinding BorderBrush}"
+                         BorderThickness="{TemplateBinding BorderThickness}"
+                         CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Content="{TemplateBinding Content}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
     <Grid Background="#f1f3f5">
-        <ToolBar Height="30" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto" MaxHeight="700"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ToolBar Height="30" VerticalAlignment="Top" Grid.Row="0">
             <Button Command="{Binding AbrirArquivo}"
-            Cursor="Hand"
-            BorderBrush="Transparent"                 
-            Style="{DynamicResource ToolBarCustomButtom}"
-            ToolTip="Selecionar Excel">
+                    Cursor="Hand"
+                    BorderBrush="Transparent"                 
+                    Style="{DynamicResource ToolBarCustomButtom}"
+                    ToolTip="Selecionar Excel">
                 <Button.Content>
                     <Image Source="pack://application:,,,/Pages/assets/Microsoft Excel.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
             <Button Command="{Binding SalvarArquivo}"
-                Cursor="Hand"
-                BorderBrush="Transparent"                 
-                Style="{DynamicResource ToolBarCustomButtom}"
-                ToolTip="Salvar Dados">
+                    Cursor="Hand"
+                    BorderBrush="Transparent"                 
+                    Style="{DynamicResource ToolBarCustomButtom}"
+                    ToolTip="Salvar Dados">
                 <Button.Content>
                     <Image Source="pack://application:,,,/Pages/assets/Save.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
         </ToolBar>
-        <DataGrid ItemsSource="{Binding Abastecimento}"
-              AutoGenerateColumns="true"
-              Margin="0,35,0,10"
-              CanUserAddRows="False"
-              CanUserDeleteRows="False"
-              CanUserReorderColumns="True"
-              CanUserResizeColumns="True"
-              CanUserSortColumns="True" 
-              Cursor="Hand" FontFamily="ubuntu">
-        </DataGrid>
+        <Expander Grid.Row="1"
+                  Header="Visualizar Grid" 
+                  Margin="10" 
+                  RenderTransformOrigin="0.5,0.5">
+            <Expander.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.19"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.747"/>
+                </TransformGroup>
+            </Expander.RenderTransform>
+            <DataGrid ItemsSource="{Binding Abastecimento}"
+                      AutoGenerateColumns="true"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserReorderColumns="True"
+                      CanUserResizeColumns="True"
+                      CanUserSortColumns="True" 
+                      Cursor="Hand" FontFamily="ubuntu" MaxHeight="600">
+            </DataGrid>
+        </Expander>
+        <GroupBox Header="DashItens" Grid.Row="2">
+            
+        </GroupBox>
     </Grid>
 </Page>
