@@ -6,9 +6,7 @@ namespace FlexiTools.ViewModel
 {
     internal class DadosCartoesViewModel : ViewModelBase
     {
-
         private string _conteudo;
-
         public string Conteudo
         {
             get => _conteudo;
