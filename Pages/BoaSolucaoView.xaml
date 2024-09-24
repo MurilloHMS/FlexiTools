@@ -12,6 +12,11 @@
     <Grid>
         <ToolBar HorizontalAlignment="Center" Height="30" VerticalAlignment="Top" Width="800">
         </ToolBar>
+        <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="23" Margin="48,49,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="39,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59"/>
+        <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="Produto" VerticalAlignment="Top" Width="126" Margin="145,49,0,0"/>
+        <ComboBox HorizontalAlignment="Left" Height="22" Margin="136,78,0,0" VerticalAlignment="Top" Width="433" IsReadOnly="True"/>
+        <DataGrid Margin="40,142,40,30" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
     </Grid>
 </Page>
