@@ -8,7 +8,7 @@ namespace FlexiTools.Model
     internal class Abastecimentos
     {
         public string? DataAbastecimento { get; set; }
-        public string? Data { get; set; }
+        public DateTime? Data { get; set; }
         public string? StatusEmissaoNFe { get; set; }
         public string? CNPJ { get; set; }
         public string? RazaoSocial { get; set; }

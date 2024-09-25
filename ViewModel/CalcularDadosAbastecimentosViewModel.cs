@@ -95,7 +95,7 @@ namespace FlexiTools.ViewModel
                         abs.Email = funcionario.Email ?? null;
                     }
                     abs.Validacao = abs.MediaKm < abs.ConsumoUrbanoGasolina ? "Consumo Médio menor que o informado pelo Fabricante" : "";
-                    abs.Data = DateTime.TryParse(abs.DataAbastecimento, out var datas) ? mes[datas.Month -1] : null;
+                    abs.Data = DateTime.TryParse(abs.DataAbastecimento, out var datas) ? new DateTime(datas.Year, datas.Month, 01) : null;
 
                     Abastecimento.Add(abs);
                 }
