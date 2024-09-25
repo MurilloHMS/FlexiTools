@@ -10,7 +10,7 @@
       Title="BoaSolucaoView">
 
     <Grid>
-        <ToolBar HorizontalAlignment="Center" Height="30" VerticalAlignment="Top" Width="800">
+        <ToolBar  Height="30" VerticalAlignment="Top">
         </ToolBar>
         <TextBlock HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" Width="23" Margin="48,49,0,0"/>
         <TextBox HorizontalAlignment="Left" Height="22" Margin="39,78,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="59"/>
