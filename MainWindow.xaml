@@ -9,7 +9,8 @@
         Title="FlexiTools" 
         SnapsToDevicePixels="True"
         Height="900" Width="1400" Icon="/icone-proauto.ico"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
     <Window.DataContext>
         <viewModel:SideMenuViewModel/>
     </Window.DataContext>

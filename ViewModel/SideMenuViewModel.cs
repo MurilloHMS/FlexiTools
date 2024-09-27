@@ -32,14 +32,14 @@ namespace FlexiTools.ViewModel
 
             SideMenus = new ObservableCollection<SideMenu>
             {
-                new SideMenu
-                {
-                    Name = "Cadastros",
-                    SubMenus = new List<SideMenu>
-                    {
-                        new SideMenu{Name = "Boa Solução"}
-                    }
-                },
+                //new SideMenu
+                //{
+                //    Name = "Cadastros",
+                //    SubMenus = new List<SideMenu>
+                //    {
+                //        new SideMenu{Name = "Boa Solução"}
+                //    }
+                //},
                 new SideMenu
                 {
                     Name = "Dados Cartão",
