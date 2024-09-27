@@ -72,7 +72,8 @@ namespace FlexiTools.ViewModel
                     Name = "Configurações",
                     SubMenus = new List<SideMenu>
                     {
-                        new SideMenu{Name = "Cadastros"}
+                        new SideMenu{Name = "Cadastros"},
+                        new SideMenu{Name = "Disparar Emails"}
                     }
                 }
             };
@@ -105,6 +106,9 @@ namespace FlexiTools.ViewModel
                         break;
                     case "Boa Solução":
                         _navigationFrame.Navigate(new Uri("Pages/BoaSolucaoView.xaml", UriKind.Relative));
+                        break;
+                    case "Disparar Emails":
+                        _navigationFrame.Navigate(new Uri("Pages/EnvioEmailsView.xaml", UriKind.Relative));
                         break;
                     default:
                         MessageBox.Show($"Página para {subcategoryName} não encontrada.");

@@ -254,7 +254,7 @@ namespace FlexiTools.ViewModel
                         worksheet.Cell(newLine, 31).Value = row.VlrLitro;
                         worksheet.Cell(newLine, 32).Value = row.VlrTotalProdutos;
                         worksheet.Cell(newLine, 33).Value = row.VlrTotalValidado;
-                        worksheet.Cell(newLine, 34).Value = $"{row.Validacao}";
+                        worksheet.Cell(newLine, 34).Value = row.Validacao;
                         worksheet.Cell(newLine, 35).Value = row.Gerente;
                         worksheet.Cell(newLine, 36).Value = row.Email;
                         newLine++;
