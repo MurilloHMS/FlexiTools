@@ -55,7 +55,8 @@ namespace FlexiTools.ViewModel
                     SubMenus = new List<SideMenu>
                     {
                         new SideMenu{Name ="Separar PDF"},
-                        new SideMenu{Name ="Calcular Alfa Transportes"}
+                        new SideMenu{Name ="Calcular Alfa Transportes"},
+                        new SideMenu{Name = "Coletar ICMS"}
 
                     }
                 },
@@ -109,6 +110,9 @@ namespace FlexiTools.ViewModel
                         break;
                     case "Disparar Emails":
                         _navigationFrame.Navigate(new Uri("Pages/EnvioEmailsView.xaml", UriKind.Relative));
+                        break;
+                    case "Coletar ICMS":
+                        _navigationFrame.Navigate(new Uri("Pages/DadosIcmsView.xaml", UriKind.Relative));
                         break;
                     default:
                         MessageBox.Show($"Página para {subcategoryName} não encontrada.");

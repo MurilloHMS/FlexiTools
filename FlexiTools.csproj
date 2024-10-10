@@ -34,6 +34,8 @@
     <None Remove="Pages\assets\Print.ico" />
     <None Remove="Pages\assets\Save.ico" />
     <None Remove="Pages\assets\Split Transaction.ico" />
+    <None Remove="Pages\assets\XML.ico" />
+    <None Remove="Pages\XML.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +70,8 @@
     <Resource Include="Pages\assets\Print.ico" />
     <Resource Include="Pages\assets\Save.ico" />
     <Resource Include="Pages\assets\Split Transaction.ico" />
+    <Resource Include="Pages\assets\XML.ico" />
+    <Resource Include="Pages\XML.ico" />
   </ItemGroup>
 
 </Project>
