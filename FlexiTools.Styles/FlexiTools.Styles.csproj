@@ -1,0 +1,62 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\Add.ico" />
+    <None Remove="Icons\Cancel.ico" />
+    <None Remove="Icons\Card Exchange.ico" />
+    <None Remove="Icons\Check Mark.ico" />
+    <None Remove="Icons\Copy.ico" />
+    <None Remove="Icons\Edit Property.ico" />
+    <None Remove="Icons\Folder.ico" />
+    <None Remove="Icons\Gas Pump.ico" />
+    <None Remove="Icons\Gas Station.ico" />
+    <None Remove="Icons\Gear.ico" />
+    <None Remove="Icons\Grid 3.ico" />
+    <None Remove="Icons\icone-proauto.ico" />
+    <None Remove="Icons\icone-proauto.png" />
+    <None Remove="Icons\logo-proauto.png" />
+    <None Remove="Icons\Menu.ico" />
+    <None Remove="Icons\Microsoft Excel 2019.ico" />
+    <None Remove="Icons\Microsoft Excel.ico" />
+    <None Remove="Icons\Minus.ico" />
+    <None Remove="Icons\PDF.ico" />
+    <None Remove="Icons\Print.ico" />
+    <None Remove="Icons\Save.ico" />
+    <None Remove="Icons\Split Transaction.ico" />
+    <None Remove="Icons\XML.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\Add.ico" />
+    <Resource Include="Icons\Cancel.ico" />
+    <Resource Include="Icons\Card Exchange.ico" />
+    <Resource Include="Icons\Check Mark.ico" />
+    <Resource Include="Icons\Copy.ico" />
+    <Resource Include="Icons\Edit Property.ico" />
+    <Resource Include="Icons\Folder.ico" />
+    <Resource Include="Icons\Gas Pump.ico" />
+    <Resource Include="Icons\Gas Station.ico" />
+    <Resource Include="Icons\Gear.ico" />
+    <Resource Include="Icons\Grid 3.ico" />
+    <Resource Include="Icons\icone-proauto.ico" />
+    <Resource Include="Images\icone-proauto.png" />
+    <Resource Include="Images\logo-proauto.png" />
+    <Resource Include="Icons\Menu.ico" />
+    <Resource Include="Icons\Microsoft Excel 2019.ico" />
+    <Resource Include="Icons\Microsoft Excel.ico" />
+    <Resource Include="Icons\Minus.ico" />
+    <Resource Include="Icons\PDF.ico" />
+    <Resource Include="Icons\Print.ico" />
+    <Resource Include="Icons\Save.ico" />
+    <Resource Include="Icons\Split Transaction.ico" />
+    <Resource Include="Icons\XML.ico" />
+  </ItemGroup>
+
+</Project>

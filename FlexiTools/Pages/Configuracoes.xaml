@@ -28,7 +28,7 @@
                 Command="{Binding SaveComamnd}"
                 Style="{DynamicResource ToolBarCustomButtom}">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/Pages/assets/Save.ico" Width="20" Height="20"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Save.ico" Width="20" Height="20"/>
                 </Button.Content>
             </Button>
         </ToolBar>

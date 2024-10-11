@@ -26,7 +26,7 @@
                     Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Coletar Dados XML">
                 <Button.Content>
-                    <Image Source="/Pages/XML.ico"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/XML.ico"/>
                 </Button.Content>
             </Button>
         </ToolBar>

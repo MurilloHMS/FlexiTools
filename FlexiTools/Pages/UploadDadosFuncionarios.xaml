@@ -20,7 +20,7 @@
                 Style="{DynamicResource ToolBarCustomButtom}"
                 ToolTip="Selecionar Excel"> 
                 <Button.Content>
-                    <Image Source="/Pages/assets/Microsoft Excel.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Microsoft Excel.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
             <Button Command="{Binding SaveCommand}"
@@ -29,7 +29,7 @@
                 Style="{DynamicResource ToolBarCustomButtom}"
                 ToolTip="Salvar Dados">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/Pages/assets/Save.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Save.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
         </ToolBar>

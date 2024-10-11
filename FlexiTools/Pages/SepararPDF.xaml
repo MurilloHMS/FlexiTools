@@ -17,14 +17,14 @@
                 Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Abrir Arquivo">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/Pages/Assets/Pdf.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Pdf.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
             <Button Command="{Binding SaveArchives}"
                     Style="{DynamicResource ToolBarCustomButtom}"
                     ToolTip="Salvar Arquivos">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/Pages/Assets/Save.ico" Width="25" Height="25"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Save.ico" Width="25" Height="25"/>
                 </Button.Content>
             </Button>
         </ToolBar>

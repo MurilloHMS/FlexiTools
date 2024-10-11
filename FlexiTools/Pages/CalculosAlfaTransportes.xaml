@@ -23,7 +23,7 @@
                 ToolTip="Abrir Arquivos"
                 Style="{DynamicResource ToolBarCustomButtom}">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/Pages/assets/Folder.ico" Width="20" Height="20"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Folder.ico" Width="20" Height="20"/>
                 </Button.Content>
             </Button>
             <Button
@@ -35,7 +35,7 @@
                 ToolTip="Imprimir" 
                 Style="{DynamicResource ToolBarCustomButtom}">
                 <Button.Content>
-                    <Image Source="pack://application:,,,/Pages/assets/Print.ico" Width="20" Height="20"/>
+                    <Image Source="pack://application:,,,/FlexiTools.Styles;Component/Icons/Print.ico" Width="20" Height="20"/>
                 </Button.Content>
             </Button>
         </ToolBar>
