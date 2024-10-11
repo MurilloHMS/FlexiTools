@@ -1,16 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System.IO;
 
-namespace FlexiTools.Model
+namespace FlexiTools.Model.Repositories
 {
-    public class Funcionario
+    public class FuncionarioRepository
     {
-        public string? Nome { get; set; }
-        public string? Departamento { get; set; }
-        public string? Hash { get; set; }
-        public string? Gerente { get; set; }
-        public string? Email { get; set; }
-
         public static async Task<List<Funcionario>> GetFuncionarios(string filePath)
         {
 

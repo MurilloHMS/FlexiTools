@@ -1,6 +1,6 @@
 ﻿namespace FlexiTools.Model
 {
-    internal class SideMenu
+    public class SideMenu
     {
         public string Name { get; set; }
         public bool IsExpanded { get; set; }

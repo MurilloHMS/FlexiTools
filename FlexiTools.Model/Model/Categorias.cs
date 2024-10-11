@@ -1,8 +1,9 @@
 ﻿namespace FlexiTools.Model
 {
-    public class SepararPDF
+    public class Categorias
     {
         public string? Nome { get; set; }
 
+        
     }
 }

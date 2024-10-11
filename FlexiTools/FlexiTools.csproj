@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FlexiTools.Model\FlexiTools.Model.csproj" />
     <ProjectReference Include="..\FlexiTools.Styles\FlexiTools.Styles.csproj" />
   </ItemGroup>
 

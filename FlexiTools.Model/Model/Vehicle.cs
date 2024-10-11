@@ -1,6 +1,6 @@
 ﻿namespace FlexiTools.Model
 {
-    internal class Vehicle
+    public class Vehicle
     {
         public string? Name { get; set; }
         public string? Plate { get; set; }

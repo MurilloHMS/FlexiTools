@@ -1,12 +1,9 @@
 ﻿using Newtonsoft.Json;
-using System.IO;
 
-namespace FlexiTools.Model
+namespace FlexiTools.Model.Repositories
 {
-    public class Categorias
+    public class CategoriasRepository
     {
-        public string? Nome { get; set; }
-
         public static async Task<List<Categorias>> GetCategoriasAsync(string filePath)
         {
 

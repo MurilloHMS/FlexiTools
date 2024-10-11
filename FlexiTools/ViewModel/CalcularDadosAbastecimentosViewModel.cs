@@ -1,5 +1,6 @@
 ﻿using ClosedXML.Excel;
 using FlexiTools.Model;
+using FlexiTools.Model.Repositories;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -70,7 +71,7 @@ namespace FlexiTools.ViewModel
             try
             {
                 var dados = await GetAbastecimentosAsync();
-                var funcionarios = await Funcionario.GetFuncionarios("funcionarios.json");
+                var funcionarios = await FuncionarioRepository.GetFuncionarios("funcionarios.json");
                 Abastecimento.Clear();
 
                 string[] mes = ["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];

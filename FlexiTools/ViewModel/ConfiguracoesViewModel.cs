@@ -1,4 +1,5 @@
 ﻿using FlexiTools.Model;
+using FlexiTools.Model.Repositories;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -46,14 +47,14 @@ namespace FlexiTools.ViewModel
 
         private async void LoadDataAsync()
         {
-            Funcionarios = new ObservableCollection<Funcionario>(await Funcionario.GetFuncionarios(funcionariosFile));
-            Categoria = new ObservableCollection<Categorias>(await Categorias.GetCategoriasAsync(categoriasFile));
+            Funcionarios = new ObservableCollection<Funcionario>(await FuncionarioRepository.GetFuncionarios(funcionariosFile));
+            Categoria = new ObservableCollection<Categorias>(await CategoriasRepository.GetCategoriasAsync(categoriasFile));
         }
 
         private async Task SaveDataAsync()
         {
-            await Funcionario.SetFuncionarios(funcionariosFile, new List<Funcionario>(Funcionarios));
-            await Categorias.SetCategoriasAsync(categoriasFile, new List<Categorias>(Categoria));
+            await FuncionarioRepository.SetFuncionarios(funcionariosFile, new List<Funcionario>(Funcionarios));
+            await CategoriasRepository.SetCategoriasAsync(categoriasFile, new List<Categorias>(Categoria));
             MessageBox.Show("Dados salvos com sucesso!", "Salvamento", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }

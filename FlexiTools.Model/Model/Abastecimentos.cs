@@ -1,6 +1,6 @@
 ﻿namespace FlexiTools.Model
 {
-    internal class Abastecimentos
+    public class Abastecimentos
     {
         public string? DataAbastecimento { get; set; }
         public DateTime? Data { get; set; }
